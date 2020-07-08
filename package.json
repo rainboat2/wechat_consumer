@@ -1,0 +1,25 @@
+{
+  "name": "wechat_resturant",
+  "version": "1.0.0",
+  "description": "wechat_resturant_description",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rainboat2/wechat_consumer.git"
+  },
+  "keywords": [
+    "consumer"
+  ],
+  "author": "QYZ",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rainboat2/wechat_consumer/issues"
+  },
+  "homepage": "https://github.com/rainboat2/wechat_consumer#readme",
+  "dependencies": {
+    "@vant/weapp": "^1.3.3"
+  }
+}
