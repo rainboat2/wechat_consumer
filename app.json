@@ -1,4 +1,7 @@
 {
+  "usingComponents": {
+    "van-notice-bar": "@vant/weapp/notice-bar/index"
+  },
   "pages":[
     "pages/home/HomePage/HomePage",
     "pages/index/index",
