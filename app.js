@@ -1,4 +1,9 @@
 //app.js
+import axios from 'axios'
+import mpAdapter from 'axios-miniprogram-adapter'
+axios.defaults.adapter = mpAdapter
+axios.defaults.withCredentials = true;
+
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -34,6 +39,7 @@ App({
     })
   },
   globalData: {
-    userInfo: null
-  }
+    userInfo: null,
+    axios: axios
+  },
 })
