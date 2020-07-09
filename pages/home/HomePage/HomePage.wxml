@@ -1,2 +1,7 @@
 <!--pages/home/HomePage/HomePage.wxml-->
 <text>pages/home/HomePage/HomePage.wxml</text>
+<van-notice-bar
+  mode="closeable"
+  left-icon="//img.yzcdn.cn/public_files/2017/8/10/6af5b7168eed548100d9041f07b7c616.png"
+  text="近日本店隆重推出正宗美味重庆麻辣老火锅套餐，量大管饱，好吃的一批"
+/>
