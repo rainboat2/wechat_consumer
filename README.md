@@ -50,4 +50,35 @@ git clone https://github.com/rainboat2/wechat_consumer
 
 ## 如何使用axios
 
-如果一个页面想要使用axios，需要在该页面的js
+### 1. 关闭域名校验
+微信小程序默认不允许访问localhost，因此需要修改如下图红圈所示的配置。该配置位于右上角"详情-本地设置-不校验合法域名..."中。
+
+![关闭http的校验](https://s1.ax1x.com/2020/07/09/UnX1FH.png)
+
+### 2. 官方文档的方法
+如果一个页面想要使用axios，需要在该页面的js代码最前面导入axios，导入代码代码如下所示：
+
+```javascript
+import axios from 'axios'
+import mpAdapter from 'axios-miniprogram-adapter'
+axios.defaults.adapter = mpAdapter
+axios.defaults.withCredentials = true;
+```
+
+[这里](https://github.com/bigmeow/axios-miniprogram-adapter/blob/master/demo/miniprograme-native/index/index.js)有官方文档给出的一个详细使用axios的demo
+
+### 3. 仿照vue的方法
+
+在app.js下导入后，将axios存储在了app的全局变量下，因此axios的使用方式可以简化为如下步骤。
+
+首先在js文件头部导入app对象，代码如下
+```javascript
+const app = getApp();
+```
+
+随后就可以正常使用axios，调用的一个例子如下
+```javascript
+app.globalData.axios.get("http://localhost:8080/test").then(r=>{
+      console.log(r);
+    })
+```
