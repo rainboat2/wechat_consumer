@@ -33,5 +33,21 @@ git clone https://github.com/rainboat2/wechat_consumer
 
 ### 1. 提交代码
 
-![提交代码](https://s1.ax1x.com/2020/07/09/Un225D.md.png)
+如下图所示，在工作区选中需要提交的代码文件，填写提交信息，点击提交即可。
+![提交代码](https://s1.ax1x.com/2020/07/09/UnW74S.png)
 
+提交代码后，在左上角找到推送按钮，然后按下图即可将代码推送到github
+![推送代码](https://s1.ax1x.com/2020/07/09/Un225D.md.png)
+
+### 2. 拉取代码
+
+在版本管理页面的左上角可以找到**拉取**代码的按钮（注意不是抓取！！！），点击后就会弹出如下图所示的窗口，然后就可以执行抓取操作。
+![拉取代码](https://s1.ax1x.com/2020/07/09/Unh7lQ.png)
+
+## 如何使用vant
+
+引入模块，然后正常使用即可，如何导入模块可以参考[官方文档](https://youzan.github.io/vant-weapp/#/button)，每个组件的文档开头，都有导入的教程。
+
+## 如何使用axios
+
+如果一个页面想要使用axios，需要在该页面的js
