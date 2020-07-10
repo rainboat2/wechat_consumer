@@ -46,7 +46,7 @@ git clone https://github.com/rainboat2/wechat_consumer
 
 ## 如何使用vant
 
-引入模块，然后正常使用即可，如何导入模块可以参考[官方文档](https://youzan.github.io/vant-weapp/#/button)，每个组件的文档开头，都有导入的教程。
+引入模块，然后正常使用即可，如何导入模块可以参考[官方文档](https://youzan.github.io/vant-weapp/#/button)，每个组件的文档开头，都有导入的教程。目前项目已经导入了所有的组件，由于是手动导入，不排除会有遗漏的情况，所以出现问题是可以前往app.js，查看要使用的组件是否已经被导入。
 
 ## 如何使用axios
 
