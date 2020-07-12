@@ -120,7 +120,7 @@
         "selectedIconPath": "images/tabBar/bgt.png"
       },
       {
-        "pagePath": "pages/personnal/ChangePassword/ChangePassword",
+        "pagePath": "pages/personnal/PersonnalInfo/PersonnalInfo",
         "text": "我的",
         "iconPath": "images/tabBar/tabBar_button_center_nselected@2x.png",
         "selectedIconPath": "images/tabBar/tabBar_button_center_default@2x.png"
