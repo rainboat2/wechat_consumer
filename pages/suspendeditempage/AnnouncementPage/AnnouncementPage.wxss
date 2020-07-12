@@ -1,1 +1,5 @@
 /* pages/suspendeditempage/AnnouncementPage/AnnouncementPage.wxss */
+.ConsumerAnnouncementPage{
+  height: 100vh;
+  background: #EFEFEF;
+}

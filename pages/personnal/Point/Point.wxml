@@ -1,2 +1,36 @@
 <!--pages/personnal/Point/Point.wxml-->
-<text>pages/personnal/Point/Point.wxml</text>
+<wxs module="filter" src="../../../utils/filter.wxs"></wxs>
+<view class="ConsumerPoint">
+<!--      头部区域-->
+        <van-sticky>
+            <view style="background: red;line-height: 50px;" >
+                <van-row>
+                    <van-col span="4" >
+                        <van-icon style="vertical-align: middle" name="arrow-left" size="20" color="white"/>
+                        <span style="color: white" bindtap="pageTo">>返回</span>
+                    </van-col>
+                    <van-col  offset="6" span="8">
+                        <span style="color: white;">积分详情</span>
+                    </van-col>
+                </van-row>
+            </view>
+        </van-sticky>
+        <view style="background-image: linear-gradient( 135deg, #FFF6B7 10%, #F6416C 100%);text-align: center;margin-top: 5%;min-height: 25vh;height: auto">
+            <view></view>
+            <view style="font-size: 20px;line-height:50px">当前积分余额：</view>
+            <view style="font-size: 50px">{{totalPoint}}</view>
+        </view>
+
+        <view style="text-align: left">
+            <van-cell-group title="积分收支明细" >
+                <!-- <van-empty v-if="{{pointDetail.length==0}}" image="search" description="暂无积分明细" /> -->
+                <view wx:if="{{pointDetail.length==0}}" style="text-align:center">暂无积分明细</view>
+                <view wx:if="{{pointDetail.length!=0}}" wx:for="{{pointDetail}}" wx:for-item="item" wx:key="index" >
+                    <van-cell wx:if="{{item.pointChangeNum>=0}}" center title="订单id:{{item.orderId}}" value="+{{item.pointChangeNum}}" label="{{filter.resolvingDate(item.pointChangeTime)}}" />
+                    <van-cell wx:else center title="订单id:{{item.orderId}}" value="{{item.pointChangeNum}}" label="{{filter.resolvingDate(item.pointChangeTime)}}" />
+                </view>
+            </van-cell-group>
+        </view>
+
+
+    </view>

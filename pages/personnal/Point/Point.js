@@ -1,18 +1,27 @@
 // pages/personnal/Point/Point.js
+const app = getApp()
+
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    totalPoint:0,
+    pointDetail:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    app.globalData.axios.get(`http://localhost:8080/login/userlogin?loginName=30000&password=123456&userType=0`).then(r => {
+      console.log(r);
+      wx.setStorageSync("sessionid", r.headers["Set-Cookie"]);
+  });
+    this.getTotalPoint();
+    this.getPointDetail();
   },
 
   /**
@@ -62,5 +71,44 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  //获取总积分
+  getTotalPoint(){
+    app.globalData.axios.get(`http://localhost:8080/point/consumerseetotalpoint`,
+    {headers:{
+      'cookie':wx.getStorageSync('sessionid')
+    }}).then(r => {
+        console.log(r.data.totalPoint);
+        if (r.data!=null){
+          this.setData({
+            totalPoint : r.data.totalPoint,
+          })
+        }else{
+        }
+    });
+},
+
+//获取积分明细
+getPointDetail(){
+  app.globalData.axios.get(`http://localhost:8080/point/consumerseepoints`,
+  {headers:{
+    'cookie':wx.getStorageSync('sessionid')
+  }}).then(r => {
+        console.log(r.data);
+        if (r.data.list!=null){
+          this.setData({
+            pointDetail : r.data.list,
+          })
+            // this.data.pointDetail = r.data.list;
+            // console.log(this.data.pointDetail.length);
+        }else{
+        }
+    });
+},
+pageTo(){
+  wx.redirectTo({
+    url: '/pages/personnal/PersonnalInfo/PersonnalInfo'
+ })
+},
+
 })

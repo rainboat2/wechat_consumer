@@ -27,13 +27,13 @@
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": true,
+		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.11.3",
-	"appid": "wxe13a6070c34b0d06",
-	"projectname": "wechat-test",
+	"appid": "wxaf5f759ff8020370",
+	"projectname": "wechat_consumer",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
