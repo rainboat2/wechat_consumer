@@ -1,2 +1,51 @@
 <!--pages/suspendeditempage/AnnouncementPage/AnnouncementPage.wxml-->
-<text>pages/suspendeditempage/AnnouncementPage/AnnouncementPage.wxml</text>
+<wxs module="filter" src="../../../utils/filter.wxs"></wxs>
+    <view class="ConsumerAnnouncementPage">
+        <van-sticky>
+            <view style="background: red;line-height: 50px;" >
+                <van-row>
+                    <van-col span="4" >
+                        <van-icon style="vertical-align: middle" name="arrow-left" size="20" color="white"/>
+                        <span style="color: white" bindtap="back">返回</span>
+                    </van-col>
+                    <van-col  offset="4" span="8">
+                        <span style="color: white;">公告详情</span>
+                    </van-col>
+                </van-row>
+            </view>
+        </van-sticky>
+
+        <view style="text-align: left">
+            <van-cell-group title="条件检索" style="background: white;" >
+                <van-cell title="选择日期区间" value="{{date}}" bind:click="onDisplay" />
+                <van-calendar show="{{show}}" min-date="{{minDate}}" max-date="{{maxDate}}" type="range" bind:confirm="onConfirm" bind:close="onClose"/>
+
+            
+                <van-row style="text-align: center;margin-top: 5%;height: 50px">
+                    <van-col span="12">
+                    <van-button bind:click="resetDate" plain hairline type="info" size="small">重置范围</van-button>
+                    </van-col>
+                    <van-col  span="12">
+                    <van-button bind:click="getAnnouncement" type="info" size="small">条件查询</van-button>
+                    </van-col>
+                </van-row>
+            </van-cell-group>
+        </view>
+
+
+
+        <view style="text-align: left">
+            <van-cell-group title="公告信息"  >
+                <view wx:if="{{announcement.length==0}}" style="text-align:center">暂无公告</view>
+                <van-collapse value="{{activeNames}}" bind:change = "onChange">
+                    <view  wx:for="{{announcement}}" wx:for-item="item" wx:key="index" >
+                        <van-collapse-item title="{{filter.resolvingDate(item.time)}}" name="{{index}}" icon="bullhorn-o">
+                            {{item.content}}
+                        </van-collapse-item>
+                    </view>
+                </van-collapse>
+            </van-cell-group>
+        </view>
+
+
+    </view>
