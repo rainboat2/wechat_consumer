@@ -1,2 +1,15 @@
 <!--pages/personnal/Coupon/Coupon.wxml-->
-<text>pages/personnal/Coupon/Coupon.wxml</text>
+<view class="background">
+  <view class="nav_div">
+    <view class="nav_title" style="margin-left: -380px">
+      <van-icon name="arrow-left" size="18px"/>
+    </view>
+    <view class="nav_title" style="margin-left: 5px">
+      红包
+    </view>
+  </view>
+
+
+
+
+</view>
