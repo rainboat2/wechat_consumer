@@ -8,7 +8,6 @@ Page({
   data: {
     account: '30001',
     password: '123456',
-    info:""
   },
 
   /**
@@ -29,13 +28,6 @@ Page({
                     //     this.$toast.fail('登录失败，账号密码错误！');
                     // }
                 });
-   app.globalData.axios.get('http://localhost:8080/consumerAddress/SearchById',{headers:{
-    'cookie': wx.getStorageSync("sessionid")
-  }}).then(r=>{
-        this.setData({
-          info:r.data.list,
-        })
-    })
   },
 
   /**

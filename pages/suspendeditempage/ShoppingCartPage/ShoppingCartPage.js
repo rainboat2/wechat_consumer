@@ -1,4 +1,5 @@
 // pages/suspendeditempage/ShoppingCartPage/ShoppingCartPage.js
+const app = getApp()
 Page({
 
   /**

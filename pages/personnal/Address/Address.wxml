@@ -1,3 +1,17 @@
 <!--pages/personnal/Address/Address.wxml-->
-<text>pages/personnal/Address/Address.wxml</text>
-<view class="info"></view>
+<view class="body">
+  <view class="infom">
+    <view class="info" wx:for="{{info}}" wx:for-item="value" wx:for-index="index">
+      <view class="top">
+        <text class="top_text">{{value.consumer.name}} </text> <text class="top_text">{{value.consumer.phone}}</text>
+      </view>
+       <van-icon class="icon" name="edit" size="20px" />
+      <view class="bottom">
+        <text class="bottom_text">{{value.province+value.municipal+value.county+value.street}}</text>
+      </view>
+    </view>
+      <view class="button">
+  <van-button type="danger" block>新增地址</van-button>
+  </view>
+  </view>
+</view>  
