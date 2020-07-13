@@ -1,0 +1,15 @@
+<!--pages/personnal/InfoChange/InfoChange.wxml-->
+            <van-cell title-class="up" title="头像" >
+                    <van-uploader bind:after-read="afterRead" style="margin-right: 10%">
+                        <van-image
+                        class="headPic"
+                        width="50px"
+                        height="50px"
+                        src="{{headPic}}"
+                        />
+                    </van-uploader>
+            </van-cell>
+            <van-cell title-class="info" title="姓名" is-link value="{{name}}" to="namechange"/>
+            <van-cell title-class="info" title="昵称" is-link value="{{nickname}}" to="nicknamechange"/>
+            <van-cell title-class="info" title="手机号码" is-link  value="{{phone}}" to="telchange"/>
+            <van-cell title-class="info" title="电子邮箱" is-link  value="{{email}}" to="emailchange"/>

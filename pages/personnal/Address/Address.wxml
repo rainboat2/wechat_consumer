@@ -1,2 +1,3 @@
 <!--pages/personnal/Address/Address.wxml-->
 <text>pages/personnal/Address/Address.wxml</text>
+<view class="info"></view>

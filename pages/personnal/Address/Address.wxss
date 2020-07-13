@@ -1,1 +1,7 @@
 /* pages/personnal/Address/Address.wxss */
+.info{
+  margin: auto;
+  width: 300px;
+  height: 70px;
+  background-color: gray;
+}

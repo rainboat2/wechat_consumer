@@ -1,8 +1,9 @@
 {
   "usingComponents": {
-    "van-notice-bar": "@vant/weapp/notice-bar/index"
+    "van-notice-bar": "@vant/weapp/notice-bar/index",
+    "van-button": "@vant/weapp/button/index"
   },
-  "pages":[
+  "pages": [
     "pages/home/HomePage/HomePage",
     "pages/index/index",
     "pages/logs/logs",
@@ -26,13 +27,16 @@
     "pages/suspendeditempage/ShoppingCartPage/ShoppingCartPage",
     "pages/ConsumerFrame/ConsumerFrame",
     "pages/Login/Login",
-    "pages/Register/Register"
+    "pages/Register/Register",
+    "pages/personnal/InfoChange/InfoChange",
+    "pages/personnal/Address/AddressAdd/AddressAdd",
+    "pages/personnal/Address/AddressChange/AddressChange"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
   "style": "v2",
   "tabBar": {

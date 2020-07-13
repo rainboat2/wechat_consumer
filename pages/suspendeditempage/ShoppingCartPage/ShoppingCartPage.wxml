@@ -1,2 +1,21 @@
 <!--pages/suspendeditempage/ShoppingCartPage/ShoppingCartPage.wxml-->
-<text>pages/suspendeditempage/ShoppingCartPage/ShoppingCartPage.wxml</text>
+<view class="head">
+<van-cell title="已选商品" value="清空">
+      <van-icon slot="right-icon" name="delete" bind:click="clear()"style="line-height: inherit;" />
+</van-cell>
+</view>
+        <view class="list" wx:for="{{shoppingCartList}}" wx:for-index="index"  wx:for-item="value">
+         <van-image
+                        class="pic"
+                        width="65px"
+                        height="65px"
+                        src="{{value.food.picture}}"
+                        />
+           <view class="info">
+               <view class="name">{{value.food.name}}</view>
+               <view class="price">￥{{value.food.price*value.foodAmount}}</view>
+           </view>
+            <van-stepper class="num" value="{{value.foodAmount}}"  bind:change="change" data-id="{{index}}" button-size="22" disable-input />
+        </view>
+        <van-divider />
+        

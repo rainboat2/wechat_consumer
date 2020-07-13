@@ -6,16 +6,35 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    account: '30001',
+    password: '123456',
+    info:""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(app.globalData.axios);
-    app.globalData.axios.get("http://localhost:8080/test").then(r=>{
-      console.log(r);
+    console.log(this.data);
+    // app.globalData.axios.get("http://localhost:8080/test").then(r=>{
+    //   console.log(r);
+    // })
+    app.globalData.axios.get(`http://localhost:8080/login/userlogin?loginName=${this.data.account}&password=${this.data.password}&userType=0`).then(r => {
+                    console.log(r);
+                    wx.setStorageSync("sessionid", r.headers["Set-Cookie"]);
+                    // if (r.data.status === 1){
+                    //     this.$toast.success('登录成功！');
+                    //     this.$router.push("/consumerframe");
+                    // }else{
+                    //     this.$toast.fail('登录失败，账号密码错误！');
+                    // }
+                });
+   app.globalData.axios.get('http://localhost:8080/consumerAddress/SearchById',{headers:{
+    'cookie': wx.getStorageSync("sessionid")
+  }}).then(r=>{
+        this.setData({
+          info:r.data.list,
+        })
     })
   },
 
