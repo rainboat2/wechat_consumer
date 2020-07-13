@@ -1,25 +1,18 @@
-// pages/personnal/Address/Address.js
-const app = getApp()
+// pages/personnal/Address/AddressChange/AddressChange.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    info:""
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    app.globalData.axios.get('http://localhost:8080/consumerAddress/SearchById',{headers:{
-    'cookie': wx.getStorageSync("sessionid")
-  }}).then(r=>{
-        this.setData({
-          info:r.data.list,
-        })
-    })
+
   },
 
   /**
