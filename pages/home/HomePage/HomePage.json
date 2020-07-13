@@ -1,5 +1,5 @@
 {
   "usingComponents": {
-
+    "food-card": "/component/FoodCard/FoodCard"
   }
 }

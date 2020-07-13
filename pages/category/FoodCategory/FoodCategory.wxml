@@ -1,2 +1,3 @@
 <!--pages/category/FoodCategory/FoodCategory.wxml-->
 <text>pages/category/FoodCategory/FoodCategory.wxml</text>
+{{categoryName}}

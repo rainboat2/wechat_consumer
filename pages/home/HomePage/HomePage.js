@@ -1,5 +1,10 @@
 // pages/home/HomePage/HomePage.js
 const app = getApp()
+
+const server = "http://localhost:8080";
+const categoryUrl = server + "/foodcategory/all";
+const getFoodUrl = server + "/food/getfood";
+
 Page({
 
   /**
@@ -8,6 +13,16 @@ Page({
   data: {
     account: '30001',
     password: '123456',
+    carouselImage:[
+      {url: "/images/carouselImage/1.jpg", foodId: '1'},
+      {url: "/images/carouselImage/2.jpg", foodId: '2'},
+      {url: "/images/carouselImage/3.jpg", foodId: '3'},
+      {url: "/images/carouselImage/4.jpg", foodId: '4'},
+      {url: "/images/carouselImage/5.jpg", foodId: '5'},
+    ],
+    foodCategories: [],
+    hotFoods:[],
+    recommendFoods: [],
   },
 
   /**
@@ -28,6 +43,31 @@ Page({
                     //     this.$toast.fail('登录失败，账号密码错误！');
                     // }
                 });
+    //查询所有的食品类别信息
+    app.globalData.axios.get(categoryUrl).then(r => {
+      const categories = Array(r.data.list.length);
+      for (let i = 0; i < categories.length; i++){
+          categories[i] = r.data.list[i];
+      }
+      this.setData({
+        foodCategories: categories
+      });
+    });
+
+    app.globalData.axios.get(getFoodUrl, {"params":{
+          pageSize: 30,
+          pageNum: 1,
+          categoryId: '',
+          keyword: '',
+          orderBy: -1
+      }}).then(r=>{
+      const foods = r.data.list;
+      this.setData({
+        hotFoods: foods.slice(0, 10),
+        recommendFoods: foods.slice(10, 30)
+      });
+      console.log(this.data.hotFoods);
+    });
   },
 
   /**
@@ -77,5 +117,24 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  /**
+   * 自定义的方法
+   */
+  jumpToDetailPage: function(event){
+    const foodId = event.currentTarget.dataset.foodid;
+    console.log(foodId);
+    const url = `/pages/category/FoodDetail/FoodDetail?foodId=${foodId}`;
+    wx.redirectTo({
+      url: url
+    })
+  },
+  jumpToFoodCategory(event){
+    const category = event.currentTarget.dataset.category;
+    console.log(category);
+    const url = `/pages/category/FoodCategory/FoodCategory?categoryName=${category.foodCategory}`;
+    wx.redirectTo({
+      url: url,
+    })
+  },
 })

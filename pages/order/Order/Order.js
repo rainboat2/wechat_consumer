@@ -1,18 +1,24 @@
 // pages/order/Order/Order.js
+
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    orderList: [],//全部
+    obligationList: [],//待支付
+    evaluateList: [],//待评价
+    refundList: [],//退款/售后
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.initialOrders();
   },
 
   /**
@@ -62,5 +68,163 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  /**
+   * 自定义的方法
+   */
+  //点击订单图片
+  orderDetail(orderId){
+    console.log(orderId);
+    // this.$router.push({
+    //     name: 'ConsumerOrderDetail',
+    //     params:{
+    //         orderId:orderId
+    //     }
+    // })
+},
+  //将日期转化为yyyy-mm-dd hh:mm:ss的格式
+  resolvingDate(date) {//date是传入的时间
+    let d = new Date(date);
+    let month = (d.getMonth() + 1) < 10 ? '0' + (d.getMonth() + 1) : (d.getMonth() + 1);
+    let day = d.getDate() < 10 ? '0' + d.getDate() : d.getDate();
+    let hours = d.getHours() < 10 ? '0' + d.getHours() : d.getHours();
+    let min = d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes();
+    let sec = d.getSeconds() < 10 ? '0' + d.getSeconds() : d.getSeconds();
+    let times = d.getFullYear() + '-' + month + '-' + day + ' ' + hours + ':' + min + ':' + sec;
+    return times
+  },
+  //初始化订单列表
+  initialOrders(event) {
+    app.globalData.axios.get(`http://localhost:8080/ordermanagement/consumerviewnostate`,
+    ).then(r => {
+        console.log(r.data);
+        if(r.data!=null){
+          let orderList = [];
+          let obligationList = [];
+          let evaluateList = [];
+          let refundList = [];
+            for(let i=0;i<r.data.list.length;i++){
+                r.data.list[i].orderTime = '下单时间：'+this.resolvingDate(r.data.list[i].orderTime);
+                r.data.list[i].orderDetailList[0].food.picture = 'http://localhost:8080/res/'+r.data.list[i].orderDetailList[0].food.picture;
+                let amount = 0;
+                for(let j=0;j<r.data.list[i].orderDetailList.length;j++){
+                    amount = amount + r.data.list[i].orderDetailList[j].amount;
+                    r.data.list[i].title = '本次订单共计'+ amount +'个菜品';
+                }
+                if(r.data.list[i].orderState==0){
+                    r.data.list[i].state='未支付';
+                    r.data.list[i].ifEvaluate=false;
+                    r.data.list[i].ifCancel=true;//可以取消订单
+                    r.data.list[i].ifPay=true;//可以支付订单
+                    r.data.list[i].ifRefund=false;
+                    r.data.list[i].ifAgain=false;
+                    r.data.list[i].ifReceive=false;
+                    r.data.list[i].ifSendMap=false;
+                    obligationList.push(r.data.list[i]);//待支付
+                }else if(r.data.list[i].orderState==1){
+                    r.data.list[i].state='已取消';
+                    r.data.list[i].ifEvaluate=false;
+                    r.data.list[i].ifCancel=false;
+                    r.data.list[i].ifPay=false;
+                    r.data.list[i].ifRefund=false;
+                    r.data.list[i].ifAgain=true;//可以再来一单
+                    r.data.list[i].ifReceive=false;
+                    r.data.list[i].ifSendMap=false;
+                }else if(r.data.list[i].orderState==2){
+                    r.data.list[i].state='已支付';
+                    r.data.list[i].ifEvaluate=false;
+                    r.data.list[i].ifCancel=false;
+                    r.data.list[i].ifPay=false;
+                    r.data.list[i].ifRefund=true;//可以退款
+                    r.data.list[i].ifAgain=true;//可以再来一单
+                    r.data.list[i].ifReceive=false;
+                    r.data.list[i].ifSendMap=false;
+                }else if(r.data.list[i].orderState==3){
+                    r.data.list[i].state='商家已接单';
+                    r.data.list[i].ifEvaluate=false;
+                    r.data.list[i].ifCancel=false;
+                    r.data.list[i].ifPay=false;
+                    r.data.list[i].ifRefund=true;//可以退款
+                    r.data.list[i].ifAgain=true;//可以再来一单
+                    r.data.list[i].ifReceive=false;
+                    r.data.list[i].ifSendMap=true;//可以看派送情况
+                }else if(r.data.list[i].orderState==4){
+                    r.data.list[i].state='骑手已接单';
+                    r.data.list[i].ifEvaluate=false;
+                    r.data.list[i].ifCancel=false;
+                    r.data.list[i].ifPay=false;
+                    r.data.list[i].ifRefund=false;
+                    r.data.list[i].ifAgain=true;//可以再来一单
+                    r.data.list[i].ifReceive=false;
+                    r.data.list[i].ifSendMap=true;//可以看派送情况
+                }else if(r.data.list[i].orderState==5){
+                    r.data.list[i].state='退款中';
+                    r.data.list[i].ifEvaluate=false;
+                    r.data.list[i].ifCancel=false;
+                    r.data.list[i].ifPay=false;
+                    r.data.list[i].ifRefund=false;
+                    r.data.list[i].ifAgain=true;//可以再来一单
+                    r.data.list[i].ifReceive=false;
+                    r.data.list[i].ifSendMap=true;//可以看派送情况
+                    refundList.push(r.data.list[i]);//退款/售后
+                }else if(r.data.list[i].orderState==6){
+                    r.data.list[i].state='已退款';
+                    r.data.list[i].ifEvaluate=false;
+                    r.data.list[i].ifCancel=false;
+                    r.data.list[i].ifPay=false;
+                    r.data.list[i].ifRefund=false;
+                    r.data.list[i].ifAgain=true;//可以再来一单
+                    r.data.list[i].ifReceive=false;
+                    r.data.list[i].ifSendMap=false;
+                    refundList.push(r.data.list[i]);
+                }else if(r.data.list[i].orderState==7){
+                    r.data.list[i].state='已送达';
+                    r.data.list[i].ifEvaluate=false;
+                    r.data.list[i].ifCancel=false;
+                    r.data.list[i].ifPay=false;
+                    r.data.list[i].ifRefund=false;
+                    r.data.list[i].ifAgain=true;//可以再来一单
+                    r.data.list[i].ifReceive=true;//可以确认收货
+                    r.data.list[i].ifSendMap=false;
+                }else if(r.data.list[i].orderState==8){
+                    r.data.list[i].state='已完成';
+                    r.data.list[i].ifEvaluate=true;//可以评价
+                    r.data.list[i].ifCancel=false;
+                    r.data.list[i].ifPay=false;
+                    r.data.list[i].ifRefund=false;
+                    r.data.list[i].ifAgain=true;//可以再来一单
+                    r.data.list[i].ifReceive=false;
+                    r.data.list[i].ifSendMap=false;
+                    evaluateList.push(r.data.list[i]);//待评价
+                }else if(r.data.list[i].orderState==9){
+                    r.data.list[i].state='已结束';
+                    r.data.list[i].ifEvaluate=false;
+                    r.data.list[i].ifCancel=false;
+                    r.data.list[i].ifPay=false;
+                    r.data.list[i].ifRefund=false;
+                    r.data.list[i].ifAgain=true;//可以再来一单
+                    r.data.list[i].ifReceive=false;
+                    r.data.list[i].ifSendMap=false;
+                }else if(r.data.list[i].orderState=='a'){
+                    r.data.list[i].state='已评价';
+                    r.data.list[i].ifEvaluate=false;
+                    r.data.list[i].ifCancel=false;
+                    r.data.list[i].ifPay=false;
+                    r.data.list[i].ifRefund=false;
+                    r.data.list[i].ifAgain=true;//可以再来一单
+                    r.data.list[i].ifReceive=false;
+                    r.data.list[i].ifSendMap=false;
+                }
+            }
+            orderList = r.data.list;
+            this.setData({
+              orderList: orderList,
+              obligationList: obligationList,
+              evaluateList: evaluateList,
+              refundList: refundList,
+            });
+        }
+    });
   }
 })

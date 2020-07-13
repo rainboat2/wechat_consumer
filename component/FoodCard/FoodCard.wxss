@@ -1,0 +1,32 @@
+/* pages/component/FoodCard/FoodCard.wxss */
+.FoodCard {
+  height: 210px;
+  width: 164px;
+  text-align: left;
+  font-size: 12px;
+  border-radius: 10px;
+  background-color: white;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.title {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.text-area {
+  padding-left: 7px;
+  padding-right: 14px;
+}
+
+.omit {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.price {
+  color: #ff0004;
+  margin-top: 23px;
+  font-size: 15px;
+  font-weight: bold;
+}
