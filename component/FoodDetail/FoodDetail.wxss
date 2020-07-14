@@ -1,0 +1,58 @@
+/* component/FoodDetail/FoodDetail.wxss */
+.main-content{
+  width: 90%;
+  margin-left: 5%;
+}
+
+.foodDescription{
+  text-align: left;
+  background-color: white;
+  width: 90%;
+  margin-left: 5%;
+}
+
+.foodDescription .title{
+  margin-top: 0;
+  padding-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.price-row{
+  display: flex;
+  justify-content: space-between;
+}
+
+.price{
+  color: rgb(255, 0, 9);
+  font-weight: bold;
+  font-size: 17px;
+  margin: 10px 0 0 0;
+}
+
+.add-icon{
+  background-color: rgb(88, 159, 248);
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+}
+
+.description{
+  font-size: 13px;
+  margin: 10px 0 10px 0;
+}
+
+.rate-text{
+  margin: 0 0 0 5px;
+  color: rgb(246, 177, 38);
+}
+
+.comment-area{
+  text-align: left;
+}
+
+.small-title{
+  margin-bottom: 10px;
+  font-weight: bold;
+}

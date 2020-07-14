@@ -1,0 +1,42 @@
+<!--component/FoodEvaluation/FoodEvaluation.wxml-->
+<view class="FoodEvaluation">
+    <view>
+        <van-row>
+            <van-col span="4">
+                <van-image
+                        width="2rem"
+                        height="2rem"
+                        src="{{'http://localhost:8080/res/' + evaluation.consumer.head}}"
+                        round/>
+            </van-col>
+            <van-col span="18">
+                <view class="title">
+                    <view class="nickname">{{evaluation.consumer.nickname}}</view>
+                    <van-rate
+                            color="rgb(246, 177, 38)"
+                            readonly
+                            size="15"
+                            style="margin-top: 13px"
+                            value="{{evaluation.grade}}">
+                    </van-rate>
+                </view>
+                <view class="show-time">发表时间：{{evaluationDate}}</view>
+                <view class="content">{{evaluation.content}}</view>
+            </van-col>
+        </van-row>
+      
+        <van-row wx:if="{{evaluation.pictures.length !== 0}}">
+            <van-col span="18" offset="4">
+                <view wx:for="{{evaluation.pictures}}"
+                      wx:for-item="picture"
+                      wx:key="index">
+                    <van-image
+                        width="7rem"
+                        height="7rem"
+                        style="float:left;margin-right:5px"
+                        src="{{'http://localhost:8080/res/' + picture}}"/>
+                </view>
+            </van-col>
+        </van-row>
+    </view>
+</view>
