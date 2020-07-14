@@ -1,15 +1,100 @@
 <!--pages/personnal/Coupon/Coupon.wxml-->
 <view class="background">
-  <view class="nav_div">
-    <view class="nav_title" style="margin-left: -380px">
-      <van-icon name="arrow-left" size="18px"/>
+  <van-sticky>
+    <view style="background: red;line-height: 50px;" >
+      <van-row>
+        <van-col span="4" >
+          <van-icon style="vertical-align: middle" name="arrow-left" size="20" color="white"/>
+          <span style="color: white" bindtap="pageTo">返回</span>
+        </van-col>
+        <van-col offset="6" span="8">
+          <span style="color: white;">红包</span>
+        </van-col>
+        </van-row>
     </view>
-    <view class="nav_title" style="margin-left: 5px">
-      红包
-    </view>
-  </view>
-
-
-
-
+  </van-sticky>
+  <van-toast id="van-toast" />
+  <van-cell title="领取红包" is-link bind:click="showPopup" />
+  <van-tabs animated>
+    <van-tab title="可用红包">
+      <van-card
+          wx:for="{{canUseCoupons}}"
+          wx:for-item="x" 
+          wx:for-index="index"
+          wx:key="index"
+          price="{{x.coupon.fee}}"
+          data-x="{{x}}"
+          desc="至少消费{{x.coupon.leastUseFee}}元">
+        <view slot="thumb">
+            <text>{{x.coupon.name}}\n</text>
+            <text>有效期至：{{x.coupon.expirationTime}}</text>
+        </view>
+      </van-card>
+    </van-tab>
+    <van-tab title="失效红包">
+      <van-card
+          wx:for="{{cannotUseCoupons}}"
+          wx:for-item="x" 
+          wx:for-index="index"
+          wx:key="index"
+          price="{{x.coupon.fee}}"
+          data-x="{{x}}"
+          desc="至少消费{{x.coupon.leastUseFee}}元">
+        <view slot="thumb">
+            <text>{{x.coupon.name}}\n</text>
+            <text>有效期至：{{x.coupon.expirationTime}}</text>
+        </view>
+      </van-card>
+    </van-tab>
+  </van-tabs>
+  <van-popup
+    show="{{show}}"
+    round
+    closeable
+    position="bottom"
+    custom-style="height: 90%"
+    bind:close="onClose"
+  >
+    <text>\n</text>
+    <van-tabs animated>
+      <van-tab title="可领取红包">
+        <van-card
+          wx:for="{{canGetCoupons}}"
+          wx:for-item="x" 
+          wx:for-index="index"
+          wx:key="index"
+          price="{{x.fee}}">
+        <view slot="thumb">
+            <text class="name">{{x.name}}</text>
+        </view>
+        <view slot="title">
+            <text>\n</text>
+          </view>
+        <view slot="desc">
+            <text>至少消费：{{x.leastUseFee}}元</text>
+            <text>\n</text>
+            <text>有效期至：{{x.expirationTime}}</text>
+          </view>
+        <view slot="footer">
+          <van-button round style="border: none;width: 80%" type="danger" size="small" bind:click="getCoupon" data-x="{{x}}">领取红包</van-button>
+        </view>
+      </van-card>
+    </van-tab>
+      <van-tab title="已领取红包">
+        <van-card
+          wx:for="{{cannotGetCoupons}}"
+          wx:for-item="x" 
+          wx:for-index="index"
+          wx:key="index"
+          price="{{x.coupon.fee}}"
+          data-x="{{x}}"
+          desc="至少消费{{x.coupon.leastUseFee}}元">
+        <view slot="thumb">
+            <text>{{x.coupon.name}}\n</text>
+            <text>有效期至：{{x.coupon.expirationTime}}</text>
+        </view>
+      </van-card>
+      </van-tab>
+    </van-tabs>
+  </van-popup>
 </view>

@@ -1,2 +1,71 @@
 <!--pages/Register/Register.wxml-->
-<text>pages/Register/Register.wxml</text>
+<view class="Register">
+    <van-row style="text-align:center">
+        <image id="side-image" style="width:130px; height:130px" src="../../images/register.png"/>
+    </van-row>
+    <text>\n</text>
+    <van-form bind:submit="register">
+         <van-field
+            value="{{account}}"
+            label="账号"
+            placeholder="请输入账号"
+            :rules="[{ required: true, message: '账号不能为空！' }]"
+            clearable
+            required/>
+        <van-field
+            value="{{password}}"
+             type="password"
+            label="密码"
+            placeholder="请输入密码"
+            :rules="[{ required: true, message: '密码不能为空！' }]"
+            clearable
+            required/>
+        <van-field
+            value="{{name}}"
+            label="姓名"
+            placeholder="请输入姓名"
+            clearable/>
+        <van-field name="radio" label="性别">
+        <template input>
+            <van-radio-group v-model="gender" direction="horizontal">
+                <van-radio name="1">男</van-radio>
+                <van-radio name="0">女</van-radio>
+            </van-radio-group>
+        </template>
+        </van-field>
+        <van-field
+            value="{{nickname}}"
+            label="昵称"
+            placeholder="请输入昵称"
+            clearable/>
+        <van-field
+            value="{{phone}}"
+            type="tel"
+            label="电话"
+            placeholder="请输入电话"
+            :rules="[{ required: true, message: '电话不能为空！'},{pattern: phonePattern, message: '电话格式错误！'}]"
+            clearable
+            required/>
+        <van-field
+            value="{{email}}"
+            label="邮箱"
+            placeholder="请输入邮箱"
+            :rules="[{ required: true, message: '邮箱不能为空！'},{pattern: emailPattern, message: '邮箱格式错误！'}]"
+            clearable
+            required/>
+    <text>\n</text>
+    <van-row style="text-align:center">
+        <van-button round color="linear-gradient(to right, #f49ead, #b0142d)" style="width: 30%;height: 60px;margin-top:5%" form-type="submit">
+        注册
+        </van-button>
+    </van-row>
+    <text>\n</text>
+    <van-row style="text-align:center">
+        <navigator url="../Login/Login">
+            返回登录
+        </navigator>
+    </van-row>
+    </van-form>
+</view>
+
+
