@@ -24,7 +24,7 @@
                     <van-grid-item icon="shop-o" text="配送中" to=""/>
                     <van-grid-item icon="refund-o" text="退款" url="../../order/OrderRefund/OrderRefund"/>
                 </van-grid>
-      <van-cell icon="coupon-o" title="我的红包" is-link to="coupon"/>
+      <van-cell icon="coupon-o" title="我的红包" is-link url="../Coupon/Coupon"/>
             <van-cell icon="location-o" title="我的地址" is-link url="../Address/Address"/>
             <van-cell icon="points" title="积分详情" is-link to="point"/>
             <van-cell icon="edit" title="修改密码" is-link url="../ChangePassword/ChangePassword"/>

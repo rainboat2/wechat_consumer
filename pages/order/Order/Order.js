@@ -1,4 +1,6 @@
 // pages/order/Order/Order.js
+import Dialog from '../../../miniprogram_npm/@vant/weapp/dialog/dialog';
+import Toast from '../../../miniprogram_npm/@vant/weapp/toast/toast';
 
 const app = getApp()
 
@@ -74,15 +76,95 @@ Page({
    * 自定义的方法
    */
   //点击订单图片
-  orderDetail(orderId){
+  orderDetail(event){
+    let orderId = event.currentTarget.dataset.x.orderId;
     console.log(orderId);
-    // this.$router.push({
-    //     name: 'ConsumerOrderDetail',
-    //     params:{
-    //         orderId:orderId
-    //     }
-    // })
-},
+    wx.navigateTo({
+      url: `/pages/order/OrderDetail/OrederDetail?orderId=${orderId}`
+    })
+  },
+  //点击评价按钮
+  evaluateOrder(event){
+    let orderId = event.currentTarget.dataset.x.orderId;
+    console.log(orderId);
+    wx.navigateTo({
+      url: `/pages/order/FoodEvaluate/FoodEvaluate?orderId=${orderId}`
+    })
+  },
+  //点击取消订单按钮
+  cancelOrder(event){
+    let orderId = event.currentTarget.dataset.x.orderId;
+    console.log(orderId);
+    wx.navigateTo({
+      url: `/pages/order/OrderCancel/OrederCancel?orderId=${orderId}`
+    })
+  },
+  //点击支付订单按钮
+  payOrder(event){
+    let orderId = event.currentTarget.dataset.x.orderId;
+    console.log(orderId);
+    wx.navigateTo({
+      url: `/pages/order/OrderPay/OrderPay?orderId=${orderId}`
+    })
+  },
+  //点击退款按钮
+  refundOrder(event){
+    let orderId = event.currentTarget.dataset.x.orderId;
+    console.log(orderId);
+    wx.navigateTo({
+      url: `/pages/order/OrderRefund/OrderRefund?orderId=${orderId}`
+    })
+  },
+  //点击派送情况按钮
+  sendMap(event){
+    let orderId = event.currentTarget.dataset.x.orderId;
+    console.log(orderId);
+    wx.navigateTo({
+      url: `/pages/order/OrderSendingMap/OrderSendingMap?orderId=${orderId}`
+    })
+  },
+  //点击再来一单按钮
+  againOrder(event){
+    let orderId = event.currentTarget.dataset.x.orderId;
+    console.log(orderId);
+    app.globalData.axios.get(`http://localhost:8080/ordermanagement/consumerreorder?orderId=${orderId}`
+    ).then(r => {
+      wx.navigateTo({
+        url: `/pages/order/OrderPay/OrderPay?orderId=${orderId}`
+      })
+    });
+  },
+  //点击确认收货按钮
+  receiveOrder(event){
+    let orderId = event.currentTarget.dataset.x.orderId;
+    console.log(orderId);
+    Dialog.confirm({
+      title: '提示',
+      message: '确定要确认收货吗？',
+    }).then(() => {
+      app.globalData.axios.post(`http://localhost:8080/ordermanagement/consumerconfirm`,
+        {
+          orderId: orderId,
+        }
+      ).then(r=>{
+        console.log(r);
+        if(r.data.status==1){
+          Toast.success('确认收货成功！');
+          this.setData({
+            orderList: [],
+            obligationList: [],
+            evaluateList: [],
+            refundList: [],
+          });
+          this.initialOrders();
+        }else if(r.data.status==2){
+          Toast.error('骑手未送达！');
+        }else{
+          Toast.error('确认收货失败！');
+        }
+      });
+    }).catch(() => {});
+  },
   //将日期转化为yyyy-mm-dd hh:mm:ss的格式
   resolvingDate(date) {//date是传入的时间
     let d = new Date(date);

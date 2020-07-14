@@ -5,6 +5,8 @@
       我的订单
     </view>    
   </view>
+  <van-dialog id="van-dialog" />
+  <van-toast id="van-toast" />
   <view class="content">
     <van-tabs animated>
       <van-tab title="全部">
@@ -19,11 +21,12 @@
         >
           <view slot="thumb">
             <van-image
-              width="9rem"
-              height="5.3rem"
+              width="8.2rem"
+              height="6.8rem"
               fit="contain"
               src="{{x.orderDetailList[0].food.picture}}"
-              bind:click='orderDetail("{{x.orderId}}")'
+              data-x="{{x}}"
+              bindtap="orderDetail"
             />
           </view>
           <view slot="price-top">
@@ -36,12 +39,12 @@
             {{x.orderTime}}
           </view>
           <view slot="footer">
-            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifEvaluate}}" bind:click='evaluateOrder("{{x.orderId}}")'>评价</van-button>
-            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifCancel}}" bind:click="cancelOrder(x.orderId)">取消订单</van-button>
-            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifPay}}" bind:click="payOrder(x.orderId)">支付订单</van-button>
-            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifRefund}}" bind:click="refundOrder(x.orderId)">退款</van-button>
-            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifAgain}}" bind:click="againOrder(x.orderId)">再来一单</van-button>
-            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifReceive}}" bind:click="receiveOrder(x.orderId)">确认收货</van-button>
+            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifEvaluate}}" data-x="{{x}}" bind:click="evaluateOrder">评价</van-button>
+            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifCancel}}" data-x="{{x}}" bind:click="cancelOrder">取消订单</van-button>
+            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifPay}}" data-x="{{x}}" bind:click="payOrder">支付订单</van-button>
+            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifRefund}}" data-x="{{x}}" bind:click="refundOrder">退款</van-button>
+            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifAgain}}" data-x="{{x}}" bind:click="againOrder">再来一单</van-button>
+            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifReceive}}" data-x="{{x}}" bind:click="receiveOrder">确认收货</van-button>
           </view>
         </van-card>        
       </van-tab>
@@ -57,11 +60,12 @@
         >
           <view slot="thumb">
             <van-image
-              width="9rem"
-              height="5.3rem"
+              width="8.2rem"
+              height="6.8rem"
               fit="contain"
               src="{{x.orderDetailList[0].food.picture}}"
-              bind:click="orderDetail(x.orderId)"
+              data-x="{{x}}"
+              bindtap="orderDetail"
             />
           </view>
           <view slot="price-top">
@@ -74,12 +78,12 @@
             {{x.orderTime}}
           </view>
           <view slot="footer">
-            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifEvaluate}}" bind:click="evaluateOrder(x.orderId)">评价</van-button>
-            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifCancel}}" bind:click="cancelOrder(x.orderId)">取消订单</van-button>
-            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifPay}}" bind:click="payOrder(x.orderId)">支付订单</van-button>
-            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifRefund}}" bind:click="refundOrder(x.orderId)">退款</van-button>
-            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifAgain}}" bind:click="againOrder(x.orderId)">再来一单</van-button>
-            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifReceive}}" bind:click="receiveOrder(x.orderId)">确认收货</van-button>
+            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifEvaluate}}" data-x="{{x}}" bind:click="evaluateOrder">评价</van-button>
+            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifCancel}}" data-x="{{x}}" bind:click="cancelOrder">取消订单</van-button>
+            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifPay}}" data-x="{{x}}" bind:click="payOrder">支付订单</van-button>
+            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifRefund}}" data-x="{{x}}" bind:click="refundOrder">退款</van-button>
+            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifAgain}}" data-x="{{x}}" bind:click="againOrder">再来一单</van-button>
+            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifReceive}}" data-x="{{x}}" bind:click="receiveOrder">确认收货</van-button>
           </view>
         </van-card>  
       </van-tab>
@@ -95,11 +99,12 @@
         >
           <view slot="thumb">
             <van-image
-              width="9rem"
-              height="5.3rem"
+              width="8.2rem"
+              height="6.8rem"
               fit="contain"
               src="{{x.orderDetailList[0].food.picture}}"
-              bind:click="orderDetail(x.orderId)"
+              data-x="{{x}}"
+              bindtap="orderDetail"
             />
           </view>
           <view slot="price-top">
@@ -112,12 +117,12 @@
             {{x.orderTime}}
           </view>
           <view slot="footer">
-            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifEvaluate}}" bind:click="evaluateOrder(x.orderId)">评价</van-button>
-            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifCancel}}" bind:click="cancelOrder(x.orderId)">取消订单</van-button>
-            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifPay}}" bind:click="payOrder(x.orderId)">支付订单</van-button>
-            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifRefund}}" bind:click="refundOrder(x.orderId)">退款</van-button>
-            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifAgain}}" bind:click="againOrder(x.orderId)">再来一单</van-button>
-            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifReceive}}" bind:click="receiveOrder(x.orderId)">确认收货</van-button>
+            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifEvaluate}}" data-x="{{x}}" bind:click="evaluateOrder">评价</van-button>
+            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifCancel}}" data-x="{{x}}" bind:click="cancelOrder">取消订单</van-button>
+            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifPay}}" data-x="{{x}}" bind:click="payOrder">支付订单</van-button>
+            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifRefund}}" data-x="{{x}}" bind:click="refundOrder">退款</van-button>
+            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifAgain}}" data-x="{{x}}" bind:click="againOrder">再来一单</van-button>
+            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifReceive}}" data-x="{{x}}" bind:click="receiveOrder">确认收货</van-button>
           </view>
         </van-card>  
       </van-tab>
@@ -133,11 +138,12 @@
         >
           <view slot="thumb">
             <van-image
-              width="9rem"
-              height="5.3rem"
+              width="8.2rem"
+              height="6.8rem"
               fit="contain"
               src="{{x.orderDetailList[0].food.picture}}"
-              bind:click="orderDetail(x.orderId)"
+              data-x="{{x}}"
+              bindtap="orderDetail"
             />
           </view>
           <view slot="price-top">
@@ -150,17 +156,15 @@
             {{x.orderTime}}
           </view>
           <view slot="footer">
-            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifEvaluate}}" bind:click="evaluateOrder(x.orderId)">评价</van-button>
-            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifCancel}}" bind:click="cancelOrder(x.orderId)">取消订单</van-button>
-            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifPay}}" bind:click="payOrder(x.orderId)">支付订单</van-button>
-            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifRefund}}" bind:click="refundOrder(x.orderId)">退款</van-button>
-            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifAgain}}" bind:click="againOrder(x.orderId)">再来一单</van-button>
-            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifReceive}}" bind:click="receiveOrder(x.orderId)">确认收货</van-button>
+            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifEvaluate}}" data-x="{{x}}" bind:click="evaluateOrder">评价</van-button>
+            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifCancel}}" data-x="{{x}}" bind:click="cancelOrder">取消订单</van-button>
+            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifPay}}" data-x="{{x}}" bind:click="payOrder">支付订单</van-button>
+            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifRefund}}" data-x="{{x}}" bind:click="refundOrder">退款</van-button>
+            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifAgain}}" data-x="{{x}}" bind:click="againOrder">再来一单</van-button>
+            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifReceive}}" data-x="{{x}}" bind:click="receiveOrder">确认收货</van-button>
           </view>
         </van-card>  
       </van-tab>
     </van-tabs>
   </view>
-
-
 </view>
