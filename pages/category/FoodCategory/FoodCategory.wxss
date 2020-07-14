@@ -1,1 +1,59 @@
 /* pages/category/FoodCategory/FoodCategory.wxss */
+
+.ConsumerFoodCategory{
+  background: rgb(249, 249, 249);
+}
+
+.top-area-placeholder {
+  margin-top: 65px;
+}
+.food-list {
+  height: calc(100vh - 60px);
+  overflow: scroll;
+}
+.top-bar {
+  height: 60px;
+  position: fixed;
+  background-color: #ff0004;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+}
+.top-bar-left-area {
+  margin-top: 20px;
+  margin-left: 10px;
+  text-align: left;
+  color: white;
+}
+.top-bar-left-area .go-back-text {
+  margin: 0;
+}
+.arrow-left {
+  float: left;
+}
+.top-bar-middle-area {
+  text-align: left;
+  margin-top: 8px;
+}
+
+.search-field{
+  background-color: #f5f4f5;
+  height: 40px;
+  border-radius: 25px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.top-bar-right-area {
+  text-align: center;
+  color: white;
+}
+.top-bar-right-area .van-icon {
+  margin-top: 18px;
+}
+.shopping-cart-icon {
+  background-color: #ff0004;
+  color: white;
+  padding: 3px;
+  border-radius: 15px;
+}

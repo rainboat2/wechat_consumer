@@ -14,19 +14,14 @@ Component({
    * 组件的初始数据
    */
   data: {
+    showPop: false,
   },
   /**
    * 组件的方法列表
    */
   methods: {
     toFoodDetail(){
-      console.log(this.properties.food);
-    },
-    jumpToDetailPage: function(event){
-      const foodId = event.currentTarget.dataset.foodid;
-      console.log(foodId);
       this.setData({
-        popFoodId: foodId,
         showPop: true
       })
     },
