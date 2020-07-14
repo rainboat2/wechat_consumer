@@ -125,11 +125,14 @@ Page({
    * 自定义的方法
    */
   jumpToDetailPage: function(event){
-    const foodId = event.currentTarget.dataset.foodid;
-    console.log(foodId);
-    this.setData({
-      popFoodId: foodId,
-      showPop: true
+    // const foodId = event.currentTarget.dataset.foodid;
+    // console.log(foodId);
+    // this.setData({
+    //   popFoodId: foodId,
+    //   showPop: true
+    // })
+    wx.navigateTo({
+      url: `/pages/order/FoodEvaluate/FoodEvaluate?foodId=1`,
     })
   },
   onPopClose: function(){

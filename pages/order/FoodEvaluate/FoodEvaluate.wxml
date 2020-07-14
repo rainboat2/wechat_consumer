@@ -1,2 +1,37 @@
 <!--pages/order/FoodEvaluate/FoodEvaluate.wxml-->
-<text>pages/order/FoodEvaluate/FoodEvaluate.wxml</text>
+<view class="ConsumerFoodEvaluate">
+    <van-toast id="van-toast" />
+	<view class="nav_div">
+		<van-icon name="arrow-left" class="go-back-icon" size="25" bindtap="goBack" />
+		<view class="nav_title">
+			食品评论页面
+		</view>
+	</view>
+	<view class="main-content">
+		<van-row>
+			<van-col span="6">
+				<van-sidebar active-key="activeKey" bind:change="changeHandler" style="width: 100%">
+					<van-sidebar-item wx:for="{{order.orderDetailList}}" wx:for-item="detail" wx:key="index" title="{{detail.food.name}}">
+					</van-sidebar-item>
+				</van-sidebar>
+			</van-col>
+			<van-col span="18">
+				<view class="food-evaluate-area" wx:if="{{selectedFood !== ''}}">
+					<van-image width="100%" height="150px" src="{{'http://localhost:8080/res/' + selectedFood.picture}}">
+					</van-image>
+					<view class="food-name">{{selectedFood.name}}</view>
+					<view style="font-size: 13px">{{selectedFoodDescription}}</view>
+					<view class="title">发表评论</view>
+
+					<van-rate model:value="{{selectedFoodGrade}}" icon="like" void-icon="like-o" />
+                    <view class="evaluation-field">
+                        <van-field model:value="{{evaluation}}" rows="3" autosize type="textarea" maxlength="100" placeholder="请输入评论" show-word-limit />
+                    </view>
+					<van-uploader file-list="{{photoList}}" multiple max-count="4" bind:after-read="afterRead"  deletable="{{ true }}"/>
+					<van-button type="primary" style="width: 100%" bindtap="submitEvaluate">提交评论</van-button>
+				</view>
+
+			</van-col>
+		</van-row>
+	</view>
+</view>

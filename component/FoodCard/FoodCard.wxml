@@ -19,7 +19,7 @@
           bind:close="onPopClose"
           position="bottom"
           custom-style="height: 100%">
-      <!-- 使用wx:if来强制销毁和重新构建组件 -->
-      <food-detail foodId="{{popFoodId}}" wx:if="{{showPop}}"></food-detail>
+      <!-- 使用wx:if来实现懒加载 -->
+      <food-detail foodId="{{food.foodId}}" wx:if="{{showPop}}"></food-detail>
   </van-popup>
 </view>

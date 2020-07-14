@@ -1,3 +1,54 @@
 <!--pages/category/FoodCategory/FoodCategory.wxml-->
-<text>pages/category/FoodCategory/FoodCategory.wxml</text>
-{{categoryName}}
+<view class="ConsumerFoodCategory">
+	<view class="top-bar">
+		<van-row style="height: 46px;">
+			<van-col span="5" bindtap="goBack">
+				<view class="top-bar-left-area">
+					<van-icon name="arrow-left" class="arrow-left" size="18px" style="margin-top: 2px" />
+					<view class="go-back-text">返回</view>
+				</view>
+			</van-col>
+			<van-col span="14">
+				<view class="top-bar-middle-area">
+					<view class="search-field">
+						<van-field left-icon="search" value="{{keyword}}" bind:change="fieldChange" placeholder="想吃什么搜一搜"></van-field>
+					</view>
+				</view>
+			</van-col>
+			<van-col span="4" bindtap="goShoppingCart">
+				<view class="top-bar-right-area">
+					<van-icon name="shopping-cart-o" size="25" />
+				</view>
+			</van-col>
+		</van-row>
+	</view>
+
+	<!--        用于将主要内容挤下来，防止内容被顶部导航栏遮挡-->
+	<view class="top-area-placeholder"></view>
+
+	<van-row>
+		<van-col span="6">
+			<van-sidebar active-key="{{activeKey}}" bind:change="handleChange" style="width: 100%">
+				<van-sidebar-item wx:for="{{foodCategories}}" wx:for-item="category" wx:key="index" title="{{category.foodCategory}}">
+				</van-sidebar-item>
+			</van-sidebar>
+		</van-col>
+		<van-col span="18">
+			<view class="food-list">
+				<view wx:for="{{foods}}" wx:for-item="food" wx:key="index">
+					<van-card price="{{food.price}}" title="{{food.name}}" desc="{{food.foodDescribe}}" lazy-load="true" thumb="{{'http://localhost:8080/res/' + food.picture}}">
+						<view slot="footer">
+							<van-icon name="shopping-cart-o" size="17" class="shopping-cart-icon" bindtap="addToCart" data-food="{{food}}" />
+						</view>
+					</van-card>
+				</view>
+			</view>
+		</van-col>
+	</van-row>
+
+
+	<van-popup show="{{showPop}}" closeable bind:close="onPopClose" closeable position="bottom" custom-style="height: 100%">
+		<!-- 使用wx:if来强制销毁和重新构建组件 -->
+		<food-detail foodId="{{popupFoodId}}" wx:if="{{showPop}}"></food-detail>
+	</van-popup>
+</view>
