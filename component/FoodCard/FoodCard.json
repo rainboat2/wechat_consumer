@@ -1,4 +1,6 @@
 {
   "component": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "food-detail": "/component/FoodDetail/FoodDetail"
+  }
 }

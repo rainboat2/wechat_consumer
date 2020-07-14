@@ -1,7 +1,7 @@
 /* pages/component/FoodCard/FoodCard.wxss */
 .FoodCard {
   height: 210px;
-  width: 164px;
+  width: 158px;
   text-align: left;
   font-size: 12px;
   border-radius: 10px;

@@ -1,0 +1,33 @@
+<!--component/FoodDetail/FoodDetail.wxml-->
+<view class="ConsumerFoodDetail">
+    <van-image src="{{'http://localhost:8080/res/' + food.picture}}" width="100%" height="300px" alt="食品图片"></van-image>
+
+        <!-- <van-sticky offset-top="0" bind:scroll="handlePageScroll"> -->
+            <view class="foodDescription">
+                <view class="title">{{food.name}}</view>
+                <view class="price-row">
+                    <view class="price">¥{{food.price}}</view>
+                    <van-icon name="plus" class="add-icon" size="20" bindtap="addToCart"/>
+                </view>
+                <view class="description">{{food.foodDescribe}}</view>
+            </view>
+        <!-- </van-sticky> -->
+
+        <view class="main-content">
+            <view class="comment-area">
+                <view class="small-title">评论分数</view>
+                <van-rate
+                        color="rgb(246, 177, 38)"
+                        readonly
+                        value="{{rate}}" />
+                <text class="rate-text">{{rate}}分</text>
+                <view class="small-title">用户评论</view>
+                 <food-evaluation 
+                    wx:for="{{evaluations}}"
+                    wx:for-index="idx"
+                    wx:for-item="evaluation"
+                    evaluation="{{evaluation}}"
+                    wx:key="idx"></food-evaluation>
+            </view>
+        </view>
+</view>

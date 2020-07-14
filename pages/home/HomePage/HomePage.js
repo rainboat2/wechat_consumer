@@ -21,6 +21,8 @@ Page({
     foodCategories: [],
     hotFoods:[],
     recommendFoods: [],
+    showPop: false,
+    popFoodId: '',
   },
 
   /**
@@ -43,7 +45,8 @@ Page({
           pageNum: 1,
           categoryId: '',
           keyword: '',
-          orderBy: -1
+          orderBy: -1,
+          isDesc: 'false'
       }}).then(r=>{
       const foods = r.data.list;
       this.setData({
@@ -108,9 +111,14 @@ Page({
   jumpToDetailPage: function(event){
     const foodId = event.currentTarget.dataset.foodid;
     console.log(foodId);
-    const url = `/pages/category/FoodDetail/FoodDetail?foodId=${foodId}`;
-    wx.redirectTo({
-      url: url
+    this.setData({
+      popFoodId: foodId,
+      showPop: true
+    })
+  },
+  onPopClose: function(){
+    this.setData({
+      showPop: false
     })
   },
   jumpToFoodCategory(event){

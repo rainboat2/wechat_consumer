@@ -19,13 +19,26 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    
+    toFoodDetail(){
+      console.log(this.properties.food);
+    },
+    jumpToDetailPage: function(event){
+      const foodId = event.currentTarget.dataset.foodid;
+      console.log(foodId);
+      this.setData({
+        popFoodId: foodId,
+        showPop: true
+      })
+    },
+    onPopClose: function(){
+      this.setData({
+        showPop: false
+      })
+    },
   },
   // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
   lifetimes: {
     attached: function () {
-      console.log("attach");
-      console.log(this.properties.food);
     },
   },
 })

@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "food-card": "/component/FoodCard/FoodCard"
+    "food-card": "/component/FoodCard/FoodCard",
+    "food-detail": "/component/FoodDetail/FoodDetail"
   }
 }

@@ -1,11 +1,25 @@
 <!--pages/component/FoodCard/FoodCard.wxml-->
 <view class="FoodCard">
 
-  <van-image width="100%" height="100px" src="{{'http://localhost:8080/res/' + food.picture}}" alt="食品图像" bindtap="toFoodDetail"/>
+  <van-image width="100%"
+             height="100px"
+             src="{{'http://localhost:8080/res/' + food.picture}}"
+             alt="食品图像"
+             bindtap="toFoodDetail"/>
 
   <view class="text-area">
     <view class="title">{{food.name}}</view>
     <view class="omit">{{food.foodDescribe}}</view>
     <view class="price">¥{{food.price}}元</view>
   </view>
+
+  <van-popup
+          show="{{showPop}}"
+          closeable
+          bind:close="onPopClose"
+          position="bottom"
+          custom-style="height: 100%">
+      <!-- 使用wx:if来强制销毁和重新构建组件 -->
+      <food-detail foodId="{{popFoodId}}" wx:if="{{showPop}}"></food-detail>
+  </van-popup>
 </view>
