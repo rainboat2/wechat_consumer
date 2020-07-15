@@ -1,2 +1,67 @@
-<!--pages/order/OrderPay/OrderPay.wxml-->
-<text>pages/order/OrderPay/OrderPay.wxml</text>
+ <view class="ConsumerOrderPay">
+        <van-sticky>
+            <view style="background: red;line-height: 50px;" >
+                <van-row>
+                    <van-col span="4" >
+                        <van-icon style="vertical-align: middle" name="arrow-left" bind:click="" size="20" color="white"/>
+                        <span style="color: white" bind:click="goBack">返回</span>
+                    </van-col>
+                    <van-col  offset="4" span="8">
+                        <span style="color: white;">订单明细</span>
+                    </van-col>
+                </van-row>
+            </view>
+        </van-sticky>
+        <view>point{{disabledCoupons[0].reason}}</view>
+         <view class="order">
+            <view
+                  wx:for="{{order.orderDetailList}}"
+                  wx:for-index="index"
+                  wx:for-item="x" 
+                  wx:key="index">
+                <view>
+                    <van-card
+                            num="{{x.amount}}"
+                            price="{{x.food.price}}"
+                            title="{{x.food.name}}"
+                            thumb="{{picLocation+x.food.picture}}" />
+                </view>
+            </view>
+             <van-coupon-cell
+                    title='红包'
+                    coupons="{{coupons}}"
+                    chosen-coupon="{{chosenCoupon}}"
+                    bind:click="chooseCoupon"/>
+            <van-popup
+                    v-model="{{showList}}"
+                    round
+                    position="bottom"
+                    style="height: 90%; padding-top: 4px;">
+                <van-coupon-list
+                        coupons="{{coupons}}"
+                        chosen-coupon="{{chosenCoupon}}"
+                        disabled-coupons="{{disabledCoupons}}"
+                        bind:change="onChange"
+                        bind:exchange="onExchange"/>
+            </van-popup>
+
+            
+          </view>
+       
+
+
+
+       
+        <view class="remark">
+        <van-coupon-cell
+                    title="红包"
+                    coupons="{{coupons}}"
+                    chosen-coupon="{{chosenCoupon}}"
+                    bind:click="chooseCoupon"/>
+            <van-cell-group>
+                <van-field v-model="remark" label="备注" placeholder="请输入备注" />
+            </van-cell-group>
+            <van-cell title="发票" style="text-align: left" value="本店不支持线上开票"/>
+        </view>
+        <van-submit-bar price="{{price}}" button-text="提交订单" bind:submit="onSubmit" />
+    </view>

@@ -1,1 +1,39 @@
-/* pages/order/OrderPay/OrderPay.wxss */
+.ConsumerOrderPay{
+        /*height:100vh;*/
+        min-height: 100vh;
+        height:auto;
+        background-image: linear-gradient(#e66465, #9198e5);
+    }
+    .nav_div{
+        height: 60px;
+        background-color: #e66476;
+        text-align: center;
+        color: white;
+    }
+    .nav_title{
+        padding-top: 20px;
+    }
+    .address_time{
+        margin-top: 30px;
+        width: 98%;
+        margin-left: 1%;
+    }
+    .order{
+        text-align: left;
+        margin-top: 10px;
+        width: 98%;
+        margin-left: 1%;
+    }
+    .phone_protect{
+        background-color: #42b983;
+        text-align: left;
+        margin-top: 30px;
+        width: 98%;
+        margin-left: 1%;
+    }
+    .remark{
+        margin-top: 30px;
+        width: 98%;
+        margin-left: 1%;
+        margin-bottom: 50px;
+    }

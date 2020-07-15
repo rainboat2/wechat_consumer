@@ -11,7 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    account: '30001',
+    account: '30000',
     password: '123456',
     carouselImage:[
       {url: "/images/carouselImage/1.jpg", foodId: '1'},

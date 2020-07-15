@@ -1,2 +1,27 @@
-<!--pages/order/OrderRefund/OrderRefund.wxml-->
-<text>pages/order/OrderRefund/OrderRefund.wxml</text>
+    <view class="ConsumerOrderCancel">
+        <view class="nav_view">
+            <!-- <van-sticky>
+                <view style="background: red;line-height: 50px;" >
+                    <van-row>
+                        <van-col span="4" >
+                            <van-icon style="vertical-align: middle" name="arrow-left" bind:click="" size="20" color="white"/>
+                            <span style="color: white" bind:click="cancel">返回</span>
+                        </van-col>
+                        <van-col  offset="4" span="8">
+                            <span style="color: white;">申请退款</span>
+                        </van-col>
+                    </van-row>
+                </view>
+            </van-sticky> -->
+            <radio-group class="radio-group" bindchange="radioChange">
+                <label class="radio" wx:for="{{items}}">
+                    <view style="margin-left: 30%;margin-top: 5%">
+                      <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+                    </view>
+                </label>
+            </radio-group>
+            <input class="input" name="reason" placeholder="请输入退款原因" bindfocus="input"bindinput="reasonChoose"style="width: 80%;margin-left: 10%;margin-top: 5%"/>
+            <button type="primary"bindtap="orderCancel"style="width: 30%;margin-left:10%;float:left;margin-top:10%"> 确定 </button>
+            <button type="warn"bindtap="cancel"style="width: 30%;margin-top:10%">取消</button>
+        </view>
+    </view>
