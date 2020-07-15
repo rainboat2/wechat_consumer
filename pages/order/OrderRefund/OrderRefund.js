@@ -1,18 +1,31 @@
 // pages/order/OrderRefund/OrderRefund.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    checked: true,
+    items: [
+      { name: '时间选错了', value: '时间选错了', checked: '' },
+      { name: '菜品选错了', value: '菜品选错了', checked: 'true' },
+      { name: '地址选错了', value: '地址选错了', checked: '' },
+      { name: '菜品数量选错了', value: '菜品数量选错了', checked: '' },
+      { name: '其他', value: '其他', checked: '' },
+    ],
+    value: '',
+    orderId: "",
+    reason:"",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      orderId: options.orderId
+    })
   },
 
   /**
@@ -62,5 +75,44 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  reasonChoose: function (e) {
+    this.setData({
+      reason: e.detail.value
+    })
+  },
+  radioChange: function (e) {
+    this.setData({
+      value: e.detail.value
+    });
+  },
+  cancel() {
+    wx.navigateBack({ changed: true });
+  },
+  orderCancel() {
+    app.globalData.axios.post('http://localhost:8080/ordermanagement/consumerrefund', {
+      orderId: this.data.orderId,
+      refundReason: this.data.reason,
+    }).then(r => {
+      if (r.data.status !== 0) {
+        wx.showToast({
+          title: '已申请退款',
+          icon: 'success',
+          duration: 2000
+        });
+        wx.navigateBack({ changed: true });
+      }
+    });
+  },
+  input() {
+    this.data.items[4].checked = 'true';
+    this.data.items[0].checked = 'false';
+    this.data.items[1].checked = 'false';
+    this.data.items[2].checked = 'false';
+    this.data.items[3].checked = 'false';
+    this.setData({
+      items: this.data.items
+    });
+    console.log(this.data.value);
+  },
 })

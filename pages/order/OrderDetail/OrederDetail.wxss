@@ -1,1 +1,60 @@
 /* pages/order/OrderDetail/OrederDetail.wxss */
+.ConsumerOrderDetail{
+        min-height: 100vh;
+        height:auto;
+        background-image: linear-gradient(#e66465, #9198e5);
+    }
+    .pref{
+        text-align: right;
+    }
+    .money{
+        background-color: white;
+    }
+    .foodMessage{
+        text-align: left;
+        margin-top: 10px;
+        width: 98%;
+        margin-left: 1%;
+    }
+    .orderMessage{
+        text-align: left;
+        margin-top: 10px;
+        width: 98%;
+        margin-left: 1%;
+    }
+    .deliverMessage{
+        text-align: left;
+        margin-top: 10px;
+        width: 98%;
+        margin-left: 1%;
+    }
+    .title{
+        text-align: center;
+        background-color: white;
+        height: 30px;
+        font-weight: bold;
+    }
+    .state{
+        width: 98%;
+        margin-left: 1%;
+        text-align: left;
+        background-color: white;
+        height: 20px;
+        font-weight: bold;
+    }
+    .father{
+        background-color: white;
+        height: 50px;
+        color: black;
+    }
+    .father_left{
+        text-align: left;
+        margin-left:10px;
+        line-height: 50px;
+        float: left;
+    }
+    .father_right{
+        text-align: right;
+        margin-right:10px;
+        line-height: 50px;
+    }
