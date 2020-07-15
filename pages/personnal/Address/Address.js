@@ -9,6 +9,21 @@ Page({
     info:""
   },
 
+  edit(e){
+    let id=e.currentTarget.dataset.id
+    let p=e.currentTarget.dataset.p
+    let m=e.currentTarget.dataset.m
+    let c=e.currentTarget.dataset.c
+    let s=e.currentTarget.dataset.s
+    wx.redirectTo({
+      url: `AddressChange/AddressChange?p=`+p+`&m=`+m+`&c=`+c+`&s=`+s+`&id=`+id,
+    })
+  },
+  add(){
+wx.redirectTo({
+      url: "AddressAdd/AddressAdd",
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

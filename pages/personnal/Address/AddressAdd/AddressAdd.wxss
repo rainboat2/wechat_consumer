@@ -1,1 +1,4 @@
 /* pages/personnal/Address/AddressAdd/AddressAdd.wxss */
+.button{
+  margin-top: 30px;
+}

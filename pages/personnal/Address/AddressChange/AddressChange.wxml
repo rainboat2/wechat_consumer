@@ -1,2 +1,54 @@
 <!--pages/personnal/Address/AddressChange/AddressChange.wxml-->
-<text>pages/personnal/Address/AddressChange/AddressChange.wxml</text>
+<van-cell-group>
+  <van-field
+    value="{{ name }}"
+    label="姓名"
+     disabled
+    border="{{ false }}"  
+  />
+  <van-field
+    value="{{ phone }}"
+    label="手机号码"
+     disabled
+    border="{{ false }}"
+  />
+  <van-field
+    value="{{ consumerAddress.province }}"
+    label="省份"
+    placeholder="请输入所在省份"
+    required
+    border="{{ false }}"
+    bind:change="onChangeP"
+  />
+    <van-field
+    value="{{consumerAddress.municipal}}"
+    label="市区"
+    placeholder="请输入所在市区"
+    required
+    border="{{ false }}"
+    bind:change="onChangeM"
+  />
+    <van-field
+    value="{{ consumerAddress.county }}"
+    label="县区"
+    placeholder="请输入所在县区"
+    required
+    border="{{ false }}"
+    bind:change="onChangeC"
+  />
+  <van-field
+    value="{{ consumerAddress.street }}"
+    label="详细地址"
+    placeholder="请输入所在详细地址"
+    required
+    border="{{ false }}"
+    bind:change="onChangeS"
+  />
+</van-cell-group>
+   <view class="button">
+  <van-button type="danger" bind:click="change" block>修改地址</van-button>
+  </view>
+  <view class="button">
+  <van-button type="danger" bind:click="delete" block>删除地址</van-button>
+  </view>
+
