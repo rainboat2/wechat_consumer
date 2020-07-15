@@ -1,16 +1,18 @@
 <!--pages/Login/Login.wxml-->
 <view class="Login">
+    <van-toast id="van-toast" />
     <text>\n</text>
     <van-row style="text-align:center">
         <image id="side-image" style="width:130px; height:130px" src="../../images/consumer.png"/>
     </van-row>
     <text>\n</text>
-    <van-form bind:submit="login">
+    <van-form>
         <van-field
             value="{{account}}"
             name="账号"
             label="账号"
             placeholder="请输入账号"
+            bind:change="changeAccount"
             :rules="[{ required: true, message: '账号不能为空' }]"
         />
         <van-field
@@ -19,12 +21,13 @@
             name="密码"
             label="密码"
             placeholder="请输入密码"
+            bind:change="changePassword"
             :rules="[{ required: true, message: '密码不能为空' }]"
         />
     <text>\n</text><text>\n</text>
     <van-row style="text-align:center">
-        <van-button round color="linear-gradient(to right, #f49ead, #b0142d)" style="width: 30%;height: 60px;margin-top:5%" form-type="submit">
-        <image src="../../images/arrow.png" style="vertical-align: middle;width:15px;height:15px"/>
+        <van-button round color="linear-gradient(to right, #f49ead, #b0142d)" style="width: 30%;height: 60px;margin-top:5%"  bind:click="login">
+            <image src="../../images/arrow.png" style="vertical-align: middle;width:15px;height:15px"/>
         </van-button>
     </van-row>
     <text>\n</text><text>\n</text><text>\n</text><text>\n</text><text>\n</text><text>\n</text><text>\n</text><text>\n</text><text>\n</text>

@@ -1,6 +1,7 @@
 // pages/order/Order/Order.js
 import Dialog from '../../../miniprogram_npm/@vant/weapp/dialog/dialog';
 import Toast from '../../../miniprogram_npm/@vant/weapp/toast/toast';
+var utils = require('../../../utils/util.js');
 
 const app = getApp()
 
@@ -20,6 +21,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // utils.RequestBySessionId({
+    //   url: 'http://localhost:8080/ordermanagement/consumerviewnostate',
+    //   method: 'GET',
+    //   success: function (res) {
+    //     console.log(res);
+    //   },
+    //   fail: function () {
+    //     console.log("请求失败");
+    //   }
+    // });
     this.initialOrders();
   },
 
@@ -79,8 +90,11 @@ Page({
   orderDetail(event){
     let orderId = event.currentTarget.dataset.x.orderId;
     console.log(orderId);
+    // wx.navigateTo({
+    //   url: `/pages/order/OrderDetail/OrederDetail?orderId=${orderId}`
+    // })
     wx.navigateTo({
-      url: `/pages/order/OrderDetail/OrederDetail?orderId=${orderId}`
+      url: `/pages/Login/Login`
     })
   },
   //点击评价按钮
