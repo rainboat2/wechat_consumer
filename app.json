@@ -64,6 +64,7 @@
     "van-goods-action-button": "@vant/weapp/goods-action-button/index"
   },
   "pages": [
+    "pages/Login/Login",
     "pages/home/HomePage/HomePage",
     "pages/index/index",
     "pages/logs/logs",
@@ -86,7 +87,7 @@
     "pages/suspendeditempage/AnnouncementPage/AnnouncementPage",
     "pages/suspendeditempage/ShoppingCartPage/ShoppingCartPage",
     "pages/ConsumerFrame/ConsumerFrame",
-    "pages/Login/Login",
+    
     "pages/Register/Register",
     "pages/personnal/InfoChange/InfoChange",
     "pages/personnal/Address/AddressAdd/AddressAdd",

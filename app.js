@@ -41,6 +41,8 @@ App({
   },
   globalData: {
     userInfo: null,
-    axios: axios
+    axios: axios,
+    cookie: '',
   },
+  
 })
