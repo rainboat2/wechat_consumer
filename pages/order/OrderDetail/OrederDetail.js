@@ -137,4 +137,5 @@ Page({
    */
   cancel: function() {
     wx.navigateBack({ changed: true });
+  }
 })

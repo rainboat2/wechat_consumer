@@ -127,7 +127,12 @@ Page({
   againOrder(event){
     let orderId = event.currentTarget.dataset.x.orderId;
     console.log(orderId);
-    app.globalData.axios.get(`http://localhost:8080/ordermanagement/consumerreorder?orderId=${orderId}`
+    app.globalData.axios.get(`http://localhost:8080/ordermanagement/consumerreorder?orderId=${orderId}`,
+      {
+        headers: {
+          'cookie': wx.getStorageSync("sessionid")
+        }
+      }
     ).then(r => {
       wx.navigateTo({
         url: `/pages/order/OrderPay/OrderPay?orderId=${orderId}`
@@ -142,7 +147,11 @@ Page({
       title: '提示',
       message: '确定要确认收货吗？',
     }).then(() => {
-      app.globalData.axios.post(`http://localhost:8080/ordermanagement/consumerconfirm`,
+      app.globalData.axios.post(`http://localhost:8080/ordermanagement/consumerconfirm`, {
+        headers: {
+          'cookie': wx.getStorageSync("sessionid")
+        }
+      },
         {
           orderId: orderId,
         }
@@ -179,6 +188,11 @@ Page({
   //初始化订单列表
   initialOrders(event) {
     app.globalData.axios.get(`http://localhost:8080/ordermanagement/consumerviewnostate`,
+      {
+        headers: {
+          'cookie': wx.getStorageSync("sessionid")
+        }
+      }
     ).then(r => {
         console.log(r.data);
         if(r.data!=null){

@@ -116,7 +116,7 @@
         "selectedIconPath": "images/tabBar/tabBar_button_shopping_default@2x.png"
       },
       {
-        "pagePath": "pages/order/OrderRefund/OrderRefund",
+        "pagePath": "pages/order/Order/Order",
         "text": "订单",
         "iconPath": "images/tabBar/bgs.png",
         "selectedIconPath": "images/tabBar/bgt.png"
