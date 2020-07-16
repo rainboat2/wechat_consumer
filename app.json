@@ -87,12 +87,12 @@
     "pages/suspendeditempage/AnnouncementPage/AnnouncementPage",
     "pages/suspendeditempage/ShoppingCartPage/ShoppingCartPage",
     "pages/ConsumerFrame/ConsumerFrame",
-    
     "pages/Register/Register",
     "pages/personnal/InfoChange/InfoChange",
     "pages/personnal/Address/AddressAdd/AddressAdd",
     "pages/personnal/Address/AddressChange/AddressChange",
-    "pages/order/OrderS/OrderS"
+    "pages/order/OrderS/OrderS",
+    "pages/order/OrderPayment/OrderPayment"
   ],
   "window": {
     "backgroundTextStyle": "light",

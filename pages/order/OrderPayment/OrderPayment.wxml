@@ -1,0 +1,54 @@
+<wxs module="filter" src="../../../utils/filter.wxs"></wxs>
+ <view class="ConsumerOrderDetail">
+        <!-- <van-sticky>
+            <view style="background: red;line-height: 50px;" >
+                <van-row>
+                    <van-col span="4" >
+                        <van-icon style="vertical-align: middle" name="arrow-left"size="20" color="white"/>
+                        <span style="color: white">返回</span>
+                    </van-col>
+                    <van-col  offset="4" span="8">
+                        <span style="color: white;">订单明细</span>
+                    </van-col>
+                </van-row>
+            </view>
+        </van-sticky> -->
+        <view class="foodMessage">
+            <view class="title">菜品信息</view>
+            <view
+                  wx:for="{{order.orderDetailList}}"
+                  wx:for-index="index"
+                  wx:for-item="x" 
+                  wx:key="index">
+                <view>
+                    <van-card
+                            num="{{x.amount}}"
+                            price="{{x.food.price}}"
+                            title="{{x.food.name}}"
+                            thumb="{{picLocation+x.food.picture}}" />
+                </view>
+            </view>
+            <view class="money">
+                <view class="pref">已优惠
+                    <view style="color: red;float: right">￥{{order.prefAmount}}</view>
+                    <view class="actual">合计￥{{order.actualAmount}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="orderMessage">
+            <view class="title">订单信息</view>
+            <view class="father">
+                <view class="father_left">订单号</view>
+                <view class="father_right">{{order.orderId}}</view>
+            </view>
+            <view class="father">
+                <view class="father_left">下单时间</view>
+                <view class="father_right">{{filter.resolvingDate(order.arriveTime)}}</view>
+            </view>
+            <view class="father">
+                <view class="father_left">订单备注</view>
+                <view class="father_right">{{order.orderRemark}}</view>
+            </view>
+        </view>
+        <van-button type="danger" block bind:click="pay">支付订单</van-button>
+      </view>

@@ -11,7 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    account: '30000',
+    account: '30001',
     password: '123456',
     carouselImage:[
       {url: "/images/carouselImage/1.jpg", foodId: '1'},
@@ -35,16 +35,11 @@ Page({
     // app.globalData.axios.get("http://localhost:8080/test").then(r=>{
     //   console.log(r);
     // })
-    app.globalData.axios.get(`http://localhost:8080/login/userlogin?loginName=${this.data.account}&password=${this.data.password}&userType=0`).then(r => {
-                    console.log(r);
-                    wx.setStorageSync("sessionid", r.headers["Set-Cookie"]);
-                    // if (r.data.status === 1){
-                    //     this.$toast.success('登录成功！');
-                    //     this.$router.push("/consumerframe");
-                    // }else{
-                    //     this.$toast.fail('登录失败，账号密码错误！');
-                    // }
-                });
+    // app.globalData.axios.get(`http://localhost:8080/login/userlogin?loginName=${this.data.account}&password=${this.data.password}&userType=0`).then(r => {
+    //                 console.log(r);
+    //                 wx.setStorageSync("sessionid", r.headers["Set-Cookie"]);
+                    
+    //             });
     //查询所有的食品类别信息
     app.globalData.axios.get(categoryUrl).then(r => {
       const categories = Array(r.data.list.length);
