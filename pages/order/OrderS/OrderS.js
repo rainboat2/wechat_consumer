@@ -1,7 +1,6 @@
-// pages/order/Order/Order.js
+// pages/order/OrderS/OrderS.js
 import Dialog from '../../../miniprogram_npm/@vant/weapp/dialog/dialog';
 import Toast from '../../../miniprogram_npm/@vant/weapp/toast/toast';
-var utils = require('../../../utils/util.js');
 
 const app = getApp()
 
@@ -16,30 +15,19 @@ Page({
     obligationList: [],//待支付
     evaluateList: [],//待评价
     refundList: [],//退款/售后
+    unRecivedList:[],//未接单
+    recivedList:[]  //已接单
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
     console.log(app.globalData.index)
     this.setData({
       index:app.globalData.index,
     })
     app.globalData.index="1"
-
-    // utils.RequestBySessionId({
-    //   url: 'http://localhost:8080/ordermanagement/consumerviewnostate',
-    //   method: 'GET',
-    //   success: function (res) {
-    //     console.log(res);
-    //   },
-    //   fail: function () {
-    //     console.log("请求失败");
-    //   }
-    // });
-
     this.initialOrders();
   },
 
@@ -99,11 +87,8 @@ Page({
   orderDetail(event){
     let orderId = event.currentTarget.dataset.x.orderId;
     console.log(orderId);
-    // wx.navigateTo({
-    //   url: `/pages/order/OrderDetail/OrederDetail?orderId=${orderId}`
-    // })
     wx.navigateTo({
-      url: `/pages/Login/Login`
+      url: `/pages/order/OrderDetail/OrederDetail?orderId=${orderId}`
     })
   },
   //点击评价按钮
@@ -150,12 +135,7 @@ Page({
   againOrder(event){
     let orderId = event.currentTarget.dataset.x.orderId;
     console.log(orderId);
-    app.globalData.axios.get(`http://localhost:8080/ordermanagement/consumerreorder?orderId=${orderId}`,
-      {
-        headers: {
-          'cookie': wx.getStorageSync("sessionid")
-        }
-      }
+    app.globalData.axios.get(`http://localhost:8080/ordermanagement/consumerreorder?orderId=${orderId}`
     ).then(r => {
       wx.navigateTo({
         url: `/pages/order/OrderPay/OrderPay?orderId=${orderId}`
@@ -170,11 +150,7 @@ Page({
       title: '提示',
       message: '确定要确认收货吗？',
     }).then(() => {
-      app.globalData.axios.post(`http://localhost:8080/ordermanagement/consumerconfirm`, {
-        headers: {
-          'cookie': wx.getStorageSync("sessionid")
-        }
-      },
+      app.globalData.axios.post(`http://localhost:8080/ordermanagement/consumerconfirm`,
         {
           orderId: orderId,
         }
@@ -187,6 +163,8 @@ Page({
             obligationList: [],
             evaluateList: [],
             refundList: [],
+            unRecivedList:[],
+            recivedList:[],
           });
           this.initialOrders();
         }else if(r.data.status==2){
@@ -210,11 +188,9 @@ Page({
   },
   //初始化订单列表
   initialOrders(event) {
-
     app.globalData.axios.get(`http://localhost:8080/ordermanagement/consumerviewnostate`,{headers:{
       'cookie': wx.getStorageSync("sessionid")
     }}
-
     ).then(r => {
         console.log(r.data);
         if(r.data!=null){
@@ -222,6 +198,8 @@ Page({
           let obligationList = [];
           let evaluateList = [];
           let refundList = [];
+          let unRecivedList = [];
+          let recivedList = [];
             for(let i=0;i<r.data.list.length;i++){
                 r.data.list[i].orderTime = '下单时间：'+this.resolvingDate(r.data.list[i].orderTime);
                 r.data.list[i].orderDetailList[0].food.picture = 'http://localhost:8080/res/'+r.data.list[i].orderDetailList[0].food.picture;
@@ -267,6 +245,7 @@ Page({
                     r.data.list[i].ifAgain=true;//可以再来一单
                     r.data.list[i].ifReceive=false;
                     r.data.list[i].ifSendMap=true;//可以看派送情况
+                    unRecivedList.push(r.data.list[i]);//待配送
                 }else if(r.data.list[i].orderState==4){
                     r.data.list[i].state='骑手已接单';
                     r.data.list[i].ifEvaluate=false;
@@ -276,6 +255,7 @@ Page({
                     r.data.list[i].ifAgain=true;//可以再来一单
                     r.data.list[i].ifReceive=false;
                     r.data.list[i].ifSendMap=true;//可以看派送情况
+                    recivedList.push(r.data.list[i]);//配送中
                 }else if(r.data.list[i].orderState==5){
                     r.data.list[i].state='退款中';
                     r.data.list[i].ifEvaluate=false;
@@ -341,7 +321,10 @@ Page({
               obligationList: obligationList,
               evaluateList: evaluateList,
               refundList: refundList,
+              unRecivedList:unRecivedList,
+              recivedList:refundList,
             });
+            console.log(this.data.unRecivedList)
         }
     });
   }

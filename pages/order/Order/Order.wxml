@@ -8,8 +8,8 @@
   <van-dialog id="van-dialog" />
   <van-toast id="van-toast" />
   <view class="content">
-    <van-tabs animated>
-      <van-tab title="全部">
+    <van-tabs animated active="{{index}}">
+      <van-tab title="全部" name="1">
         <van-card
           wx:for="{{orderList}}"
           wx:for-item="x" 
@@ -48,7 +48,7 @@
           </view>
         </van-card>        
       </van-tab>
-      <van-tab title="待付款">
+      <van-tab title="待付款" name="2">
         <van-card
           wx:for="{{obligationList}}"
           wx:for-item="x" 
@@ -87,7 +87,7 @@
           </view>
         </van-card>  
       </van-tab>
-      <van-tab title="待评价">
+      <van-tab title="待评价" name="3">
         <van-card
           wx:for="{{evaluateList}}"
           wx:for-item="x" 
@@ -126,7 +126,7 @@
           </view>
         </van-card>  
       </van-tab>
-      <van-tab title="退款/售后">
+      <van-tab title="退款/售后" name="4">
         <van-card
           wx:for="{{refundList}}"
           wx:for-item="x" 

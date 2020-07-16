@@ -24,6 +24,59 @@ Page({
     head: "",
     headPic: "",
   },
+  jump1(){
+    app.globalData.index="2"
+    wx.switchTab({
+      url: '../../order/Order/Order',
+       success(res){
+            let page = getCurrentPages().pop();
+            if(page == undefined || page == null){
+                  return
+            }
+            page.onLoad();
+          }
+        })
+  },
+  jump2(){
+    console.log(2)
+    app.globalData.index="1"
+    wx.redirectTo({
+      url: '../../order/OrderS/OrderS',
+       success(res){
+            let page = getCurrentPages().pop();
+            if(page == undefined || page == null){
+                  return
+            }
+            page.onLoad();
+          }
+        })
+  },
+  jump3(){
+    app.globalData.index="2"
+    wx.redirectTo({
+      url: '../../order/OrderS/OrderS',
+       success(res){
+            let page = getCurrentPages().pop();
+            if(page == undefined || page == null){
+                  return
+            }
+            page.onLoad();
+          }
+        })
+  },
+  jump4(){
+    app.globalData.index="4"
+    wx.switchTab({
+      url: '../../order/Order/Order',
+       success(res){
+            let page = getCurrentPages().pop();
+            if(page == undefined || page == null){
+                  return
+            }
+            page.onLoad();
+          }
+        })
+  },
   change: function(){
     wx.navigateTo({
       url: '../InfoChange/InfoChange'
