@@ -99,12 +99,12 @@ Page({
   orderDetail(event){
     let orderId = event.currentTarget.dataset.x.orderId;
     console.log(orderId);
-    // wx.navigateTo({
-    //   url: `/pages/order/OrderDetail/OrederDetail?orderId=${orderId}`
-    // })
     wx.navigateTo({
-      url: `/pages/Login/Login`
+      url: `/pages/order/OrderDetail/OrederDetail?orderId=${orderId}`
     })
+    // wx.navigateTo({
+    //   url: `/pages/order/OrderDetail/OrederDetail`
+    // })
   },
   //点击评价按钮
   evaluateOrder(event){
@@ -127,7 +127,7 @@ Page({
     let orderId = event.currentTarget.dataset.x.orderId;
     console.log(orderId);
     wx.navigateTo({
-      url: `/pages/order/OrderPay/OrderPay?orderId=${orderId}`
+      url: `/pages/order/OrderPayment/OrderPayment?orderId=${orderId}`
     })
   },
   //点击退款按钮

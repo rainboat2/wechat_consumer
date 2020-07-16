@@ -108,6 +108,7 @@ Page({
     //     console.log("请求失败");
     //   }
     // });
+    console.log(this.data.account)
     app.globalData.axios.get(`http://localhost:8080/login/userlogin?loginName=${this.data.account}&password=${this.data.password}&userType=0`).then(r => {
         console.log(r.data);
         wx.setStorageSync("sessionid", r.headers["Set-Cookie"]);
