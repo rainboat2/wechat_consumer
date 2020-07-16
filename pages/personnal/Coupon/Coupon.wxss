@@ -1,8 +1,9 @@
 /* pages/personnal/Coupon/Coupon.wxss */
 .name{
-  font-size: 40rpx;
+  font-size: 30rpx;
   color: red;
   text-align: center;
+  margin-top: 100px;
 }
 .van-card {
   margin-top: 10px;
@@ -11,6 +12,6 @@
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  height: 125px;
-  text-align: right;
+  height: 130px;
+  text-align: center;
 }

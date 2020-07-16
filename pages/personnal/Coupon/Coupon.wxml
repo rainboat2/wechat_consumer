@@ -2,15 +2,9 @@
 <view class="background">
   <van-sticky>
     <view style="background: red;line-height: 50px;" >
-      <van-row>
-        <van-col span="4" >
-          <van-icon style="vertical-align: middle" name="arrow-left" size="20" color="white"/>
-          <span style="color: white" bindtap="pageTo">返回</span>
-        </van-col>
-        <van-col offset="6" span="8">
-          <span style="color: white;">红包</span>
-        </van-col>
-        </van-row>
+      <van-row style="text-align:center;">
+          <span style="color: white;">我的红包</span>
+      </van-row>
     </view>
   </van-sticky>
   <van-toast id="van-toast" />
@@ -22,11 +16,17 @@
           wx:for-item="x" 
           wx:for-index="index"
           wx:key="index"
-          price="{{x.coupon.fee}}"
-          data-x="{{x}}"
-          desc="至少消费{{x.coupon.leastUseFee}}元">
+          price="红包金额：{{x.coupon.fee}}元"
+          currency=" ">
         <view slot="thumb">
-            <text>{{x.coupon.name}}\n</text>
+            <text class="name">\n\n{{x.coupon.name}}</text>
+        </view>
+        <view slot="title">
+            <text>\n</text>
+        </view>
+        <view slot="desc">
+            <text>至少消费：{{x.coupon.leastUseFee}}元</text>
+            <text>\n</text>
             <text>有效期至：{{x.coupon.expirationTime}}</text>
         </view>
       </van-card>
@@ -37,11 +37,17 @@
           wx:for-item="x" 
           wx:for-index="index"
           wx:key="index"
-          price="{{x.coupon.fee}}"
-          data-x="{{x}}"
-          desc="至少消费{{x.coupon.leastUseFee}}元">
+          price="红包金额：{{x.coupon.fee}}元"
+          currency=" ">
         <view slot="thumb">
-            <text>{{x.coupon.name}}\n</text>
+            <text class="name">\n\n{{x.coupon.name}}</text>
+        </view>
+        <view slot="title">
+            <text>\n</text>
+        </view>
+        <view slot="desc">
+            <text>至少消费：{{x.coupon.leastUseFee}}元</text>
+            <text>\n</text>
             <text>有效期至：{{x.coupon.expirationTime}}</text>
         </view>
       </van-card>
@@ -63,20 +69,21 @@
           wx:for-item="x" 
           wx:for-index="index"
           wx:key="index"
-          price="{{x.fee}}">
+          price="红包金额：{{x.fee}}元"
+          currency=" ">
         <view slot="thumb">
-            <text class="name">{{x.name}}</text>
+            <text class="name">\n\n{{x.name}}</text>
         </view>
         <view slot="title">
             <text>\n</text>
-          </view>
+        </view>
         <view slot="desc">
             <text>至少消费：{{x.leastUseFee}}元</text>
             <text>\n</text>
             <text>有效期至：{{x.expirationTime}}</text>
-          </view>
+        </view>
         <view slot="footer">
-          <van-button round style="border: none;width: 80%" type="danger" size="small" bind:click="getCoupon" data-x="{{x}}">领取红包</van-button>
+          <van-button round style="border: none;width: 80%" type="danger" size="mini" bind:click="getCoupon" data-x="{{x}}">领取红包</van-button>
         </view>
       </van-card>
     </van-tab>
@@ -86,11 +93,17 @@
           wx:for-item="x" 
           wx:for-index="index"
           wx:key="index"
-          price="{{x.coupon.fee}}"
-          data-x="{{x}}"
-          desc="至少消费{{x.coupon.leastUseFee}}元">
+          price="红包金额：{{x.coupon.fee}}元"
+          currency=" ">
         <view slot="thumb">
-            <text>{{x.coupon.name}}\n</text>
+            <text class="name">\n\n{{x.coupon.name}}</text>
+        </view>
+        <view slot="title">
+            <text>\n</text>
+        </view>
+        <view slot="desc">
+            <text>至少消费：{{x.coupon.leastUseFee}}元</text>
+            <text>\n</text>
             <text>有效期至：{{x.coupon.expirationTime}}</text>
         </view>
       </van-card>

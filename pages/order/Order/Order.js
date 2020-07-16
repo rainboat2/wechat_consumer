@@ -1,6 +1,7 @@
 // pages/order/Order/Order.js
 import Dialog from '../../../miniprogram_npm/@vant/weapp/dialog/dialog';
 import Toast from '../../../miniprogram_npm/@vant/weapp/toast/toast';
+var utils = require('../../../utils/util.js');
 
 const app = getApp()
 
@@ -21,11 +22,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
     console.log(app.globalData.index)
     this.setData({
       index:app.globalData.index,
     })
     app.globalData.index="1"
+
+    // utils.RequestBySessionId({
+    //   url: 'http://localhost:8080/ordermanagement/consumerviewnostate',
+    //   method: 'GET',
+    //   success: function (res) {
+    //     console.log(res);
+    //   },
+    //   fail: function () {
+    //     console.log("请求失败");
+    //   }
+    // });
+
     this.initialOrders();
   },
 
@@ -85,8 +99,11 @@ Page({
   orderDetail(event){
     let orderId = event.currentTarget.dataset.x.orderId;
     console.log(orderId);
+    // wx.navigateTo({
+    //   url: `/pages/order/OrderDetail/OrederDetail?orderId=${orderId}`
+    // })
     wx.navigateTo({
-      url: `/pages/order/OrderDetail/OrederDetail?orderId=${orderId}`
+      url: `/pages/Login/Login`
     })
   },
   //点击评价按钮
@@ -133,7 +150,12 @@ Page({
   againOrder(event){
     let orderId = event.currentTarget.dataset.x.orderId;
     console.log(orderId);
-    app.globalData.axios.get(`http://localhost:8080/ordermanagement/consumerreorder?orderId=${orderId}`
+    app.globalData.axios.get(`http://localhost:8080/ordermanagement/consumerreorder?orderId=${orderId}`,
+      {
+        headers: {
+          'cookie': wx.getStorageSync("sessionid")
+        }
+      }
     ).then(r => {
       wx.navigateTo({
         url: `/pages/order/OrderPay/OrderPay?orderId=${orderId}`
@@ -148,7 +170,11 @@ Page({
       title: '提示',
       message: '确定要确认收货吗？',
     }).then(() => {
-      app.globalData.axios.post(`http://localhost:8080/ordermanagement/consumerconfirm`,
+      app.globalData.axios.post(`http://localhost:8080/ordermanagement/consumerconfirm`, {
+        headers: {
+          'cookie': wx.getStorageSync("sessionid")
+        }
+      },
         {
           orderId: orderId,
         }
@@ -184,9 +210,11 @@ Page({
   },
   //初始化订单列表
   initialOrders(event) {
+
     app.globalData.axios.get(`http://localhost:8080/ordermanagement/consumerviewnostate`,{headers:{
       'cookie': wx.getStorageSync("sessionid")
     }}
+
     ).then(r => {
         console.log(r.data);
         if(r.data!=null){
