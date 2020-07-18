@@ -1,7 +1,7 @@
-<!--pages/suspendeditempage/ShoppingCartPage/ShoppingCartPage.wxml-->
+<!--component/ShoppingCart/ShoppingCart.wxml-->
 <view class="head">
 <van-cell title="已选商品" value="清空">
-      <van-icon slot="right-icon" name="delete" bind:click="clear()"style="line-height: inherit;" />
+      <van-icon slot="right-icon" name="delete" bind:click="clear"style="line-height: inherit;" />
 </van-cell>
 </view>
         <view class="list" wx:for="{{shoppingCartList}}" wx:key="key" wx:for-index="index"  wx:for-item="value">
@@ -19,3 +19,4 @@
         </view>
         <van-divider />
         
+

@@ -10,6 +10,11 @@ Page({
     totalFee:"",
     index:""
   },
+
+  load(){
+    this.onLoad();
+  },
+
   change:function(e){
     let index=e.currentTarget.dataset.id
      console.log(e.detail);

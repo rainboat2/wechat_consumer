@@ -15,11 +15,6 @@
 					</view>
 				</view>
 			</van-col>
-			<van-col span="4" bindtap="goShoppingCart">
-				<view class="top-bar-right-area">
-					<van-icon name="shopping-cart-o" size="25" />
-				</view>
-			</van-col>
 		</van-row>
 	</view>
 
@@ -36,8 +31,9 @@
 		<van-col span="18">
 			<view class="food-list">
 				<view wx:for="{{foods}}" wx:for-item="food" wx:key="index">
-					<van-card price="{{food.price}}" title="{{food.name}}" desc="{{food.foodDescribe}}" lazy-load="true" thumb="{{'http://localhost:8080/res/' + food.picture}}">
+					<van-card price="{{food.price}}" title="{{food.name}}" desc="{{food.foodDescribe}}" lazy-load="true" thumb="{{'http://localhost:8080/res/' + food.picture}}" >
 						<view slot="footer">
+							<van-icon name="info-o" size="17" class="shopping-cart-icon" bindtap="toFoodDetail" data-food="{{food}}" />
 							<van-icon name="shopping-cart-o" size="17" class="shopping-cart-icon" bindtap="addToCart" data-food="{{food}}" />
 						</view>
 					</van-card>
@@ -45,10 +41,21 @@
 			</view>
 		</van-col>
 	</van-row>
-
-
-	<van-popup show="{{showPop}}" closeable bind:close="onPopClose" closeable position="bottom" custom-style="height: 100%">
+	<van-submit-bar
+  price="{{ price }}"
+  button-text="提交订单"
+  bind:submit="onClickButton"
+>
+<van-icon name="shopping-cart-o" size="25"  bindtap="goShoppingCart" />
+</van-submit-bar>
+<van-popup show="{{showPop}}" position="bottom" custom-style="height: 40%" close-on-click-overlay>
 		<!-- 使用wx:if来强制销毁和重新构建组件 -->
-		<food-detail foodId="{{popupFoodId}}" wx:if="{{showPop}}"></food-detail>
+		<shopping-cart wx:if="{{showPop}}" bind:changeFee="changeFee"> 
+		</shopping-cart>
+	</van-popup>
+
+	<van-popup show="{{showPop1}}" closeable bind:close="onPopClose" closeable  position="bottom" custom-style="height: 100%">
+		<!-- 使用wx:if来强制销毁和重新构建组件 -->
+		<food-detail foodId="{{popupFoodId}}" wx:if="{{showPop1}}"></food-detail>
 	</van-popup>
 </view>

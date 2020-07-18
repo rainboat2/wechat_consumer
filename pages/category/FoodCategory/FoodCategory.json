@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "food-detail": "/component/FoodDetail/FoodDetail"
+    "food-detail": "/component/FoodDetail/FoodDetail",
+    "shopping-cart": "/component/ShoppingCart/ShoppingCart"
   }
 }

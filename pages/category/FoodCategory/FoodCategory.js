@@ -1,5 +1,6 @@
 // pages/category/FoodCategory/FoodCategory.js
 const app = getApp();
+import Toast from '../../../miniprogram_npm/@vant/weapp/toast/toast';
 const server = "http://localhost:8080";
 const serverRes = "http://localhost:8080/res";
 const categoryUrl = server + "/foodcategory/all";
@@ -21,13 +22,22 @@ Page({
     ],
     popupFoodId: '',
     showPop: false,
+    showPop1: false,
     foods: [],
+    price:"",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    app.globalData.axios.get('http://localhost:8080/shoppingcart/search',{headers:{
+      'cookie': wx.getStorageSync("sessionid")
+    }}).then(r=>{
+               this.setData({
+                 price:r.data.totalFee*100
+               })
+            });
     this.setData({
       categoryName: options.categoryName
     })
@@ -47,7 +57,16 @@ Page({
   /**
    * 自定义方法
    */
-
+  changeFee(){
+    app.globalData.axios.get('http://localhost:8080/shoppingcart/search',{headers:{
+      'cookie': wx.getStorageSync("sessionid")
+    }}).then(r=>{
+               this.setData({
+                 price:r.data.totalFee*100
+               })
+            });
+  },
+  
   setActiveKey() {
     // 依据路由传来的菜品类别，设置左侧的菜品类别导航栏
     const categoryName = this.data.categoryName;
@@ -65,12 +84,31 @@ Page({
     });
   },
   addToCart(event) {
+    let _this=this
     const food = event.currentTarget.dataset.food;
     console.log(food.foodId);
-    this.setData({
-      popupFoodId: food.foodId,
-      showPop: true
-    })
+    app.globalData.axios.get('http://localhost:8080/shoppingcart/insertdetailforcurrentconsumer',{headers:{
+      'cookie': wx.getStorageSync("sessionid")
+    },
+    params: {
+      foodId: food.foodId,
+      foodAmount: 1,
+  }
+  }).then(r=>{
+    if (r.data.status === 1){
+      Toast.success('添加成功！');
+      app.globalData.axios.get('http://localhost:8080/shoppingcart/search',{headers:{
+      'cookie': wx.getStorageSync("sessionid")
+    }}).then(r=>{
+               this.setData({
+                 price:r.data.totalFee*100
+               })
+               _this.load=_this.selectAllComponents('#shopping-cart')
+            });
+  }else{
+      Toast.fail('添加失败，请稍尝试！');
+  }
+            });
   },
   onPopClose(){
     this.setData({
@@ -119,11 +157,17 @@ Page({
     })
   },
   goShoppingCart() {
-    console.log("go to shoppingCart");
+    this.setData({
+      showPop: true
+    })
   },
-  toFoodDetail(food) {
-    this.popupFoodId = food.foodId;
-    this.showPop = true;
+  toFoodDetail(event) {
+    const food = event.currentTarget.dataset.food;
+    console.log(food.foodId);
+    this.setData({
+      popupFoodId: food.foodId,
+      showPop1: true
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
