@@ -1,0 +1,30 @@
+/* component/ShoppingCart/ShoppingCart.wxss */
+.head{
+  height:20px;
+}
+.list{
+  display: flex;
+  padding: 10px 0;
+}
+.pic{
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.info{
+  float: left;
+  height: 30px;
+  width: 130px;
+  position: relative;
+}
+.name{
+  font-size: 16px;
+  color: #222222;
+  margin: 3px 0 10px 15px;
+}
+.price{
+  margin: 20px 0 0px 15px;
+}
+.num{
+  width: 115px;
+  margin: 40px 0 10px 60px;
+}

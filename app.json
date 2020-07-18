@@ -112,7 +112,8 @@
         "selectedIconPath": "images/tabBar/tabBar_button_home_default@2x.png"
       },
       {
-        "pagePath": "pages/suspendeditempage/ShoppingCartPage/ShoppingCartPage",
+        "pagePath": "pages/category/FoodCategory/FoodCategory",
+        
         "text": "点餐",
         "iconPath": "images/tabBar/tabBar_button_shopping_nselected@2x.png",
         "selectedIconPath": "images/tabBar/tabBar_button_shopping_default@2x.png"
