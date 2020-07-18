@@ -87,6 +87,45 @@
           </view>
         </van-card>  
       </van-tab>
+      <van-tab title="待接收" name="5">
+        <van-card
+          wx:for="{{unRecivedList}}"
+          wx:for-item="x" 
+          wx:for-index="index"
+          wx:key="index"
+          price="{{x.actualAmount}}"
+          origin-price="{{x.amountBeforePref}}"
+          title="{{x.title}}"
+        >
+          <view slot="thumb">
+            <van-image
+              width="8.2rem"
+              height="6.8rem"
+              fit="contain"
+              src="{{x.orderDetailList[0].food.picture}}"
+              data-x="{{x}}"
+              bindtap="orderDetail"
+            />
+          </view>
+          <view slot="price-top">
+            <van-tag color="#e14371">{{x.state}}</van-tag>
+          </view>
+          <view slot="desc">
+            <text>\n</text>
+          </view>
+          <view slot="tags">
+            {{x.orderTime}}
+          </view>
+          <view slot="footer">
+            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifEvaluate}}" data-x="{{x}}" bind:click="evaluateOrder">评价</van-button>
+            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifCancel}}" data-x="{{x}}" bind:click="cancelOrder">取消订单</van-button>
+            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifPay}}" data-x="{{x}}" bind:click="payOrder">支付订单</van-button>
+            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifRefund}}" data-x="{{x}}" bind:click="refundOrder">退款</van-button>
+            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifAgain}}" data-x="{{x}}" bind:click="againOrder">再来一单</van-button>
+            <van-button color="linear-gradient(to right, #f49ead, #b0142d)" size="mini" wx:if="{{x.ifReceive}}" data-x="{{x}}" bind:click="receiveOrder">确认收货</van-button>
+          </view>
+        </van-card>        
+      </van-tab>
       <van-tab title="待评价" name="3">
         <van-card
           wx:for="{{evaluateList}}"

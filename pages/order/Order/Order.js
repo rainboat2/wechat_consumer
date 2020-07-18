@@ -16,6 +16,7 @@ Page({
     obligationList: [],//待支付
     evaluateList: [],//待评价
     refundList: [],//退款/售后
+    unRecivedList:[],//未接收
   },
 
   /**
@@ -222,6 +223,7 @@ Page({
           let obligationList = [];
           let evaluateList = [];
           let refundList = [];
+          let unRecivedList = [];
             for(let i=0;i<r.data.list.length;i++){
                 r.data.list[i].orderTime = '下单时间：'+this.resolvingDate(r.data.list[i].orderTime);
                 r.data.list[i].orderDetailList[0].food.picture = 'http://localhost:8080/res/'+r.data.list[i].orderDetailList[0].food.picture;
@@ -267,6 +269,7 @@ Page({
                     r.data.list[i].ifAgain=true;//可以再来一单
                     r.data.list[i].ifReceive=false;
                     r.data.list[i].ifSendMap=true;//可以看派送情况
+                    unRecivedList.push(r.data.list[i]);
                 }else if(r.data.list[i].orderState==4){
                     r.data.list[i].state='骑手已接单';
                     r.data.list[i].ifEvaluate=false;
@@ -276,6 +279,7 @@ Page({
                     r.data.list[i].ifAgain=true;//可以再来一单
                     r.data.list[i].ifReceive=false;
                     r.data.list[i].ifSendMap=true;//可以看派送情况
+                    unRecivedList.push(r.data.list[i]);
                 }else if(r.data.list[i].orderState==5){
                     r.data.list[i].state='退款中';
                     r.data.list[i].ifEvaluate=false;
@@ -341,6 +345,7 @@ Page({
               obligationList: obligationList,
               evaluateList: evaluateList,
               refundList: refundList,
+              unRecivedList:unRecivedList,
             });
         }
     });

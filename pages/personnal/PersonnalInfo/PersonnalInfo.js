@@ -39,9 +39,9 @@ Page({
   },
   jump2(){
     console.log(2)
-    app.globalData.index="1"
-    wx.redirectTo({
-      url: '../../order/OrderS/OrderS',
+    app.globalData.index="5"
+    wx.switchTab({
+      url: '../../order/Order/Order',
        success(res){
             let page = getCurrentPages().pop();
             if(page == undefined || page == null){
@@ -52,9 +52,9 @@ Page({
         })
   },
   jump3(){
-    app.globalData.index="2"
-    wx.redirectTo({
-      url: '../../order/OrderS/OrderS',
+    app.globalData.index="3"
+    wx.switchTab({
+      url: '../../order/Order/Order',
        success(res){
             let page = getCurrentPages().pop();
             if(page == undefined || page == null){

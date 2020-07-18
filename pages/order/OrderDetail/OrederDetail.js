@@ -137,5 +137,10 @@ Page({
    */
   cancel: function() {
     wx.navigateBack({ changed: true });
+  },
+  sending(){
+    wx.navigateTo({
+      url:'../OrderSendingMap/OrderSendingMap',
+  })
   }
 })

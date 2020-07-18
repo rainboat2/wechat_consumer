@@ -20,8 +20,8 @@
 <view class="body">
       <van-grid>
             <van-grid-item icon="paid" text="待付款" bind:click="jump1" />
-            <van-grid-item icon="chart-trending-o" text="待配送" bind:click="jump2"/>
-            <van-grid-item icon="shop-o" text="配送中" bind:click="jump3"/>
+            <van-grid-item icon="chart-trending-o" text="待接收" bind:click="jump2"/>
+            <van-grid-item icon="chat-o" text="待评价" bind:click="jump3"/>
             <van-grid-item icon="refund-o" text="退款" bind:click="jump4"/>
                 </van-grid>
       <van-cell icon="coupon-o" title="我的红包" is-link url="../Coupon/Coupon"/>
