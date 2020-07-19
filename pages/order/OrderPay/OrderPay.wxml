@@ -17,7 +17,7 @@
             <van-popup 
                 show="{{addressValue}}" 
                 round
-                closeable
+                close-on-click-overlay
                 position="bottom"
                 custom-style="height: 60%" 
                 bind:close="onClose">
@@ -33,7 +33,7 @@
             <van-popup 
                 show="{{ timeValue }}" 
                 round
-                closeable
+                close-on-click-overlay
                 position="bottom"
                 custom-style="height: 60%" 
                 bind:close="onClose">
@@ -67,7 +67,7 @@
             <van-popup 
                 show="{{couponValue}}" 
                 round
-                closeable
+                close-on-click-overlay
                 position="bottom"
                 custom-style="height: 60%" 
                 bind:close="onClose">
@@ -83,7 +83,7 @@
             <van-popup 
                 show="{{pointValue}}" 
                 round
-                closeable
+                close-on-click-overlay
                 position="bottom"
                 custom-style="height: 60%" 
                 bind:close="onClose">

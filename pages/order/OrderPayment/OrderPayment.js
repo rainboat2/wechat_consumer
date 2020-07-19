@@ -22,7 +22,14 @@ Page({
       this.data.orderForm.orderId=this.data.order.orderId,
       app.globalData.axios.post('http://localhost:8080/ordermanagement/consumerpay',this.data.orderForm).then(r=>{
           if (r.data.status!=0){
-            wx.navigateTo({
+            app.globalData.axios.get('http://localhost:8080/point/getpoint',{
+              params:{
+                orderId:this.data.order.orderId
+              }  
+            }).then(r=>{
+              console.log(r.data)
+          })
+            wx.switchTab({
               url: `../Order/Order`
             })
               Toast.success('支付成功');
