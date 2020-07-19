@@ -110,9 +110,16 @@ Page({
   }
             });
   },
+  onClickButton(){
+    wx.navigateTo({
+      url: '../../order/OrderPay/OrderPay'
+    })
+
+  },
   onPopClose(){
     this.setData({
-      showPop: false
+      showPop: false,
+      showPop1: false
     })
   },
   fieldChange(event){

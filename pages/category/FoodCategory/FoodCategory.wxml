@@ -48,7 +48,7 @@
 >
 <van-icon name="shopping-cart-o" size="25"  bindtap="goShoppingCart" />
 </van-submit-bar>
-<van-popup show="{{showPop}}" position="bottom" custom-style="height: 40%" close-on-click-overlay>
+<van-popup show="{{showPop}}" position="bottom" custom-style="height: 40%" bind:close="onPopClose" close-on-click-overlay>
 		<!-- 使用wx:if来强制销毁和重新构建组件 -->
 		<shopping-cart wx:if="{{showPop}}" bind:changeFee="changeFee"> 
 		</shopping-cart>
