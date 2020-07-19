@@ -26,10 +26,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    app.globalData.axios.get(`http://localhost:8080/login/userlogin?loginName=30000&password=123456&userType=0`).then(r => {
-      console.log(r);
-      wx.setStorageSync("sessionid", r.headers["Set-Cookie"]);
-  });
+
   },
 
   /**
@@ -116,7 +113,7 @@ Page({
         {headers:{
           'cookie':wx.getStorageSync('sessionid')
         }}).then(r => {
-
+            console.log(r.data.list);
               this.setData({
                   consumerId:r.data.list.consumerId,
                   name:r.data.list.name,
@@ -149,8 +146,15 @@ Page({
                           head:this.data.head
                   }}).then(r => {
                       if(r.data.status==1){
-                        Toast.success('修改成功！');
-                          this.pageTo('personnalinfo');
+                        Toast({
+                          type: 'success',
+                          message: '修改成功',
+                          onClose: () => {
+                            wx.switchTab({
+                              url: '../../personnal/PersonnalInfo/PersonnalInfo'
+                           })
+                          },
+                        });
                       }
                       else{
                           Toast.fail('修改失败，请重试！');
@@ -165,12 +169,6 @@ Page({
           });
       };
     }
-   
-  },
-  pageTo(){
-    wx.redirectTo({
-            url: '/pages/personnal/PersonnalInfo/PersonnalInfo'
-         })
   },
 })
 

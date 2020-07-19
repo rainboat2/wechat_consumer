@@ -16,10 +16,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    app.globalData.axios.get(`http://localhost:8080/login/userlogin?loginName=30000&password=123456&userType=0`).then(r => {
-      console.log(r);
-      wx.setStorageSync("sessionid", r.headers["Set-Cookie"]);
-  });
     this.getTotalPoint();
     this.getPointDetail();
   },
@@ -105,10 +101,4 @@ getPointDetail(){
         }
     });
 },
-pageTo(){
-  wx.redirectTo({
-    url: '/pages/personnal/PersonnalInfo/PersonnalInfo'
- })
-},
-
 })
