@@ -92,7 +92,9 @@ Page({
     let couponId = event.currentTarget.dataset.x.couponId;
     console.log(couponId);
     if(couponId!=undefined){
-      app.globalData.axios.get(`http://localhost:8080/coupon/usecoupon?couponID=${couponId}`
+      app.globalData.axios.get(`http://localhost:8080/coupon/usecoupon?couponID=${couponId}`,{headers:{
+        'cookie': wx.getStorageSync("sessionid")
+      }}
       ).then(r=>{
         if(r.data.status==1){
           this.setData({
@@ -119,7 +121,9 @@ Page({
   },
   //查询红包列表
   initialCoupons(event){
-    app.globalData.axios.get(`http://localhost:8080/coupon/usefulcoupon`
+    app.globalData.axios.get(`http://localhost:8080/coupon/usefulcoupon`,{headers:{
+      'cookie': wx.getStorageSync("sessionid")
+    }}
     ).then(r=>{
       let list = r.data.list;
       console.log(list);
@@ -132,7 +136,9 @@ Page({
         });
       }
     });
-    app.globalData.axios.get(`http://localhost:8080/coupon/seecoupon`
+    app.globalData.axios.get(`http://localhost:8080/coupon/seecoupon`,{headers:{
+      'cookie': wx.getStorageSync("sessionid")
+    }}
     ).then(r=>{
       let list = r.data.list;
       console.log(list);
