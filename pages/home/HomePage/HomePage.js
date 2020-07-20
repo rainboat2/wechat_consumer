@@ -117,7 +117,7 @@ Page({
 
   },
   /**
-   * 自定义的方法
+   * 用于首页菜品图片的跳转
    */
   jumpToDetailPage: function(event){
     // const foodId = event.currentTarget.dataset.foodid;
@@ -127,7 +127,7 @@ Page({
     //   showPop: true
     // })
     wx.navigateTo({
-      url: `/pages/order/FoodEvaluate/FoodEvaluate?foodId=1`,
+      url: `/pages/order/FoodEvaluate/FoodEvaluate?foodId=2`,
     })
   },
   onPopClose: function(){
