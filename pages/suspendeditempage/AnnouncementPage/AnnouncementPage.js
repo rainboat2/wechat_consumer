@@ -106,10 +106,6 @@ Page({
     })
       
   },
-  back(){
-    wx.navigateBack({
-    })
-  },
   getAnnouncement(){
     app.globalData.axios.get(`http://localhost:8080/announcement/searchallannouncement`,{params:{
               beginTime:this.data.beginDate,
