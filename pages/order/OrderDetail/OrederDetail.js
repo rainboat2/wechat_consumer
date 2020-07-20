@@ -22,6 +22,11 @@ Page({
     app.globalData.axios.get('http://localhost:8080/ordermanagement/consumerviewone', {"params": {
       orderId: options.orderId,
       }}).then(r => {
+        if (r.data.list.horsemanId == null) {
+          // console.log('没有骑手');
+          r.data.list.horsemanId='无骑手';
+          r.data.list.arriveTime = null
+        }
         this.setData({
           order: r.data.list
         });

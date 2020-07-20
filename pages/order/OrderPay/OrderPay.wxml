@@ -2,12 +2,12 @@
         <van-sticky>
             <view style="background: red;line-height: 50px;" >
                 <van-row>
-                    <van-col span="4" >
+                    <!-- <van-col span="4" >
                         <van-icon style="vertical-align: middle" name="arrow-left" bind:click="" size="20" color="white"/>
                         <span style="color: white" bind:click="goBack">返回</span>
-                    </van-col>
+                    </van-col> -->
                     <van-col  offset="4" span="8">
-                        <span style="color: white;">订单明细</span>
+                        <span style="color: white;">下订单</span>
                     </van-col>
                 </van-row>
             </view>
@@ -74,7 +74,7 @@
               <van-picker
                   show-toolbar
                   title="红包"
-                  columns="{{disabledCoupons}}"
+                  columns="{{coupons}}"
                   bind:cancel="onCancel"
                   bind:confirm="couponConfirm" />
             </van-popup>
