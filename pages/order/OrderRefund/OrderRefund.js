@@ -16,7 +16,7 @@ Page({
     ],
     value: '',
     orderId: "",
-    reason:"",
+    reason:"菜品选错了",
   },
 
   /**
@@ -80,29 +80,40 @@ Page({
     this.setData({
       reason: e.detail.value
     })
+    // console.log(this.data.reason);
   },
   radioChange: function (e) {
     this.setData({
-      value: e.detail.value
+      reason: e.detail.value
     });
   },
   cancel() {
     wx.navigateBack({ changed: true });
   },
   orderCancel() {
-    app.globalData.axios.post('http://localhost:8080/ordermanagement/consumerrefund', {
-      orderId: this.data.orderId,
-      refundReason: this.data.reason,
+    // // console.log(this.data.value);
+    // console.log(this.data.reason);
+    // console.log(this.data.orderId);
+    if (this.data.reason=='其他'){
+      this.data.reason == this.data.reason
+    }
+    // console.log(this.data.reason);
+    // console.log(this.data.orderId);
+    app.globalData.axios.get('http://localhost:8080/ordermanagement/consumerrefund', {
+      params:{
+        orderId: this.data.orderId,
+        refundReason: this.data.reason,
+      }
     }).then(r => {
       if (r.data.status !== 0) {
         wx.showToast({
           title: '已申请退款',
           icon: 'success',
-          duration: 2000
+          duration: 3000
         });
-        wx.navigateBack({ changed: true });
       }
     });
+    wx.navigateBack({ changed: true });
   },
   input() {
     this.data.items[4].checked = 'true';
@@ -112,6 +123,9 @@ Page({
     this.data.items[3].checked = 'false';
     this.setData({
       items: this.data.items
+    });
+    this.setData({
+      reason: this.data.reason
     });
     console.log(this.data.value);
   },

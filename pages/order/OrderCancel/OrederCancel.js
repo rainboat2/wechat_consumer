@@ -93,11 +93,11 @@ Page({
         wx.showToast({
           title: '成功取消订单',
           icon: 'success',
-          duration: 2000
+          duration: 5000
         });
-        wx.navigateBack({ changed: true });
       }
     });
+    wx.navigateBack({ changed: true });
   },
   input() {
     this.data.items[4].checked = 'true';

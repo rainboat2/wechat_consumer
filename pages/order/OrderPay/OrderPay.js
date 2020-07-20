@@ -93,6 +93,7 @@ Page({
         let b = '红包优惠-￥';
         const tdisabledCoupons = [];
         const tcoupons = [];
+        tcoupons.push('无红包');
         for (let i = 0; i < r.data.list.length; i++) {
           if (r.data.list[i].couponState === '1') {
             if (this.data.totalFee >= r.data.list[i].coupon.leastUseFee) {
@@ -273,18 +274,40 @@ Page({
   },
   couponConfirm(event) {
     const { picker, value, index } = event.detail;
-    console.log(value.split('￥')[1]);
-    this.setData({
-      couponTitle: value,
-      couponValue: false,
-    });
-    let bb = this.data.price;
-    bb = bb + (this.data.couponPrice * 100);
-    bb = bb - (value.split('￥')[1] * 100);
-    this.setData({
-      price: bb,
-      couponPrice: value.split('￥')[1],
-    });
+    console.log(value);
+    if(value=='无红包'){
+      let cc = this.data.price;
+      cc = cc + (this.data.couponPrice * 100);
+      this.setData({
+        price: cc,
+        couponPrice: 0,
+      });
+      this.setData({
+        couponTitle: value,
+        couponValue: false,
+      });
+    }else{
+      let bb = this.data.price;
+      bb = bb + (this.data.couponPrice * 100);
+      bb = bb - (value.split('￥')[1] * 100);
+      if (bb <= 0) {
+        wx.showToast({
+          title: '使用后金额为负无法使用',
+          icon: 'none',
+          duration: 1000
+        });
+      } else {
+        this.setData({
+          price: bb,
+          couponPrice: value.split('￥')[1],
+        });
+        console.log(value.split('￥')[1]);
+        this.setData({
+          couponTitle: value,
+          couponValue: false,
+        });
+      }
+    }
   },
 
   showPoint() {
@@ -292,17 +315,25 @@ Page({
   },
   pointConfirm(event) {
     const { picker, value, index } = event.detail;
-    this.setData({
-      pointTitle: value,
-      pointValue: false,
-    });
     let aa=this.data.price;
     aa = aa+(this.data.pointPrice*100);
     aa = aa-(value*100);
-    this.setData({
-      price:aa,
-      pointPrice:value
-    });
+    if(aa<=0){
+      wx.showToast({
+        title: '使用后金额为负无法使用',
+        icon: 'none',
+        duration: 1000
+      });
+    }else{
+      this.setData({
+        pointTitle: value,
+        pointValue: false,
+      });
+      this.setData({
+        price: aa,
+        pointPrice: value
+      });
+    }
   },
   onClose(){
     this.setData({
@@ -376,7 +407,11 @@ Page({
     let b1 = a1.split('D')[1];
    
     if (this.data.couponTitle != '选择使用红包') {
-      this.data.orderInfo.couponIdList[0] = b1;
+      if (this.data.couponTitle != '无红包'){
+        this.data.orderInfo.couponIdList[0] = "无红包";
+      }else{
+        this.data.orderInfo.couponIdList[0] = b1;
+      }
     } else {
       this.data.orderInfo.couponIdList[0] = "无红包";
     }
@@ -403,13 +438,13 @@ Page({
           icon: 'success',
           duration: 2000
         });
-        wx.navigateBack({ changed: true });
         // Toast.success('下订单成功');
         // this.$router.push({
         //   path: "/consumer/order",
         // });
       }
     });
+    wx.navigateBack({ changed: true });
   },
 
 

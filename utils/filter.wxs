@@ -1,6 +1,9 @@
 var filter = {
   resolvingDate :function(date) {//date是传入的时间
     //wxs中不可以使用new date()，需要通过getDate获取date对象
+    if(date===null){
+      return '未送达'
+    }
     var d = getDate(date)
     var month = (d.getMonth() + 1) < 10 ? '0' + (d.getMonth() + 1) : (d.getMonth() + 1)
     var day = d.getDate() < 10 ? '0' + d.getDate() : d.getDate()
