@@ -28,6 +28,6 @@
             <van-cell icon="location-o" title="我的地址" is-link url="../Address/Address"/>
             <van-cell icon="points" title="积分详情" is-link url="../Point/Point"/>
             <van-cell icon="edit" title="修改密码" is-link url="../ChangePassword/ChangePassword"/>
-            <van-cell icon="service-o" title="我的客服" is-link to=""/>
+            <van-cell icon="volume-o" title="店铺公告" is-link url="../../suspendeditempage/AnnouncementPage/AnnouncementPage"/>
             <van-cell icon="notes-o" title="规则中心" is-link to=""/>
 </view>
