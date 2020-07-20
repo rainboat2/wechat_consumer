@@ -120,15 +120,15 @@ Page({
    * 用于首页菜品图片的跳转
    */
   jumpToDetailPage: function(event){
-    // const foodId = event.currentTarget.dataset.foodid;
-    // console.log(foodId);
-    // this.setData({
-    //   popFoodId: foodId,
-    //   showPop: true
-    // })
-    wx.navigateTo({
-      url: `/pages/order/FoodEvaluate/FoodEvaluate?foodId=2`,
+    const foodId = event.currentTarget.dataset.foodid;
+    console.log(foodId);
+    this.setData({
+      popFoodId: foodId,
+      showPop: true
     })
+    // wx.navigateTo({
+    //   url: `/pages/order/FoodEvaluate/FoodEvaluate?foodId=2`,
+    // })
   },
   onPopClose: function(){
     this.setData({
