@@ -29,11 +29,27 @@
             bind:change="changeName"
             clearable/>
         <text></text>
-        性别
+        <van-cell>
+  <view slot="title"class="hhead">
+    <view class="van-cell-text">性别</view>
+    <text>　　　　</text>
+            <van-radio-group slot="radio" value="{{gender}}" bind:change="changeGender"
+            label="display:inline-block"
+            >
+            <view class="head">
+                <van-radio name="1">男</van-radio>
+            <text>　　　</text> 
+                <van-radio name="0">女</van-radio>
+            </view>
+            </van-radio-group>
+        
+  </view>
+</van-cell>
+        <!-- 性别
             <van-radio-group slot="radio" value="{{gender}}" bind:change="changeGender">
                 <van-radio name="1">男</van-radio>
                 <van-radio name="0">女</van-radio>
-            </van-radio-group>
+            </van-radio-group> -->
         
         
         <van-field

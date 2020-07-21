@@ -1,1 +1,7 @@
 /* pages/Register/Register.wxss */
+.head{
+display: flex;
+}
+.hhead{
+  display: flex;
+}
