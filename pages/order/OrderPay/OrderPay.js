@@ -36,7 +36,7 @@ Page({
     addressTime: '到货时间',
     //送餐时间
     timeValue: false,
-    currentTime: '12:00',
+    currentTime: '09:00',
     minHour: "",
     maxHour: "23",
     minMinute: "",
@@ -59,6 +59,7 @@ Page({
       pointNum: "",
       orderRemark: "",
       arriveAddress: "",
+      shopId:1,
       couponIdList: []
     },
   },
@@ -407,10 +408,10 @@ Page({
     let b1 = a1.split('D')[1];
    
     if (this.data.couponTitle != '选择使用红包') {
-      if (this.data.couponTitle != '无红包'){
-        this.data.orderInfo.couponIdList[0] = "无红包";
+      if (this.data.couponTitle == '无红包'){
+        this.data.orderInfo.couponIdList[0] = 0;
       }else{
-        this.data.orderInfo.couponIdList[0] = b1;
+        this.data.orderInfo.couponIdList[0] = parseInt(b1);
       }
     } else {
       this.data.orderInfo.couponIdList[0] = "无红包";
