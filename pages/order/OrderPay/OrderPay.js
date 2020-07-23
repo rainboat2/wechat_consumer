@@ -423,10 +423,13 @@ Page({
     } else {
       this.data.orderInfo.couponIdList[0] = 0;
     }
-    this.data.orderInfo.amountBeforeref = this.data.actualAmount;//初始金额
+    // this.data.orderInfo.amountBeforeref = this.data.actualAmount;//初始金额
     this.data.orderInfo.prefAmount = ((this.data.pointPrice + j));//优惠金额
-    this.data.orderInfo.actualAmount = (10+this.data.price/100);
+    // this.data.orderInfo.actualAmount = (10+this.data.price/100);
     this.data.orderInfo.deliveryAmount = "10";
+
+    this.data.orderInfo.actualAmount = (this.data.price / 100);
+    this.data.orderInfo.amountBeforeref = this.data.actualAmount+10;//初始金额
 
     console.log(this.data.orderInfo);
     app.globalData.axios.post('http://localhost:8080/ordermanagement/consumerorder',this.data.orderInfo, {
