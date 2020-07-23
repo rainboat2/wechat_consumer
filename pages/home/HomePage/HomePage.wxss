@@ -17,6 +17,7 @@
 }
 .nav_title {
   padding-top: 20px;
+  font-weight: bold;
 }
 .content {
   width: 90%;
