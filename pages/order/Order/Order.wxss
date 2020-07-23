@@ -16,6 +16,7 @@
 }
 .nav_title {
   padding-top: 20px;
+  font-weight: bold;
 }
 .content {
   margin-top: 65px;
