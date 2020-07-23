@@ -265,6 +265,13 @@ Page({
   },
   arriveAddress(event) {
     const { picker, value, index } = event.detail;
+    if (this.data.addressTitle=="到货地址"){
+      this.setData({
+        addressTitle: value,
+        addressValue: false,
+        price: this.data.price + 1000,
+      });
+    }
     this.setData({
       addressTitle: value,
       addressValue: false,
@@ -416,7 +423,7 @@ Page({
     } else {
       this.data.orderInfo.couponIdList[0] = "无红包";
     }
-    this.data.orderInfo.amountBeforeref = this.data.actualAmount;//初始金额
+    this.data.orderInfo.amountBeforeref = 10+this.data.actualAmount;//初始金额
     this.data.orderInfo.prefAmount = ((this.data.pointPrice + j));//优惠金额
     this.data.orderInfo.actualAmount = (10+this.data.price/100);
     this.data.orderInfo.deliveryAmount = "10";
