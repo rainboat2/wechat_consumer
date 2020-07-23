@@ -139,8 +139,8 @@ Page({
     const category = event.currentTarget.dataset.category;
     console.log(category);
     const url = `/pages/category/FoodCategory/FoodCategory?categoryName=${category.foodCategory}`;
-    wx.redirectTo({
+    wx.switchTab({
       url: url,
-    })
+    });
   },
 })
