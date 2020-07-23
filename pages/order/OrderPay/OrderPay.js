@@ -421,7 +421,7 @@ Page({
         this.data.orderInfo.couponIdList[0] = parseInt(b1);
       }
     } else {
-      this.data.orderInfo.couponIdList[0] = "无红包";
+      this.data.orderInfo.couponIdList[0] = 0;
     }
     this.data.orderInfo.amountBeforeref = this.data.actualAmount;//初始金额
     this.data.orderInfo.prefAmount = ((this.data.pointPrice + j));//优惠金额
